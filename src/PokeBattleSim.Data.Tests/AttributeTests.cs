@@ -1,5 +1,5 @@
 using Xunit;
-using PokeBattleSim.Data.Entities;
+using PokeBattleSim.Data.Entities.Pokemon;
 
 namespace PokeBattleSim.Data.Tests;
 

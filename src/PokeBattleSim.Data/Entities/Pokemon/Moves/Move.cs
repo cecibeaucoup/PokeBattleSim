@@ -1,7 +1,7 @@
 using System;
 using PokeBattleSim.Data.Enums;
 
-namespace PokeBattleSim.Data.Entities.Pokemon
+namespace PokeBattleSim.Data.Entities.Pokemon.Moves
 {
 
     public class Move(uint _id, string _name, PokemonTypes _type, string _description, MoveStats _moveStats, bool _isClashable, PokemonTypes _secType = PokemonTypes.None, IEnumerable<Tag>? _tags = null)

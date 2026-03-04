@@ -3,7 +3,7 @@ using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Entities.Pokemon
 {
-    public class Skill(int _baseValue, string _name)
+    public class Skill(int _baseValue, string _name): IStat<SkillGrades>
     {
         public int BaseValue { get; set; } = _baseValue;
     

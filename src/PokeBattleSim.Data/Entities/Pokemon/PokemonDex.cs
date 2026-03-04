@@ -1,5 +1,5 @@
-using System;
 using PokeBattleSim.Data.Entities.Pokemon.Dex;
+using PokeBattleSim.Data.Entities.Pokemon.Moves;
 using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Entities.Pokemon
@@ -15,7 +15,8 @@ namespace PokeBattleSim.Data.Entities.Pokemon
         }
 
         public PokemonDex(string _name, uint _dexNumber, uint _length, uint _weight, Morphologies _morphology, PokemonTypes _priType, PokemonTypes _secType,
-                            Attributes _attributes, Skills _skills, IEnumerable<MobilityTypes> _mobility, IEnumerable<string>? _possibleAbilities = null, IEnumerable<string>? _possibleMoves = null)
+                            IEnumerable<Attribute> _attributes, IEnumerable<Skill> _skills, IEnumerable<MobilityTypes> _mobility, IEnumerable<string>? _possibleAbilities = null, 
+                            IEnumerable<string>? _possibleMoves = null)
         {
             BaseInfo = new PokemonDexBaseInfo(_name, _dexNumber, _length, _weight, _morphology, _priType, _secType);
             GameInfo = new PokemonDexGameInfo(_attributes, _skills, _mobility, _possibleAbilities, _possibleMoves);
@@ -39,10 +40,8 @@ namespace PokeBattleSim.Data.Entities.Pokemon
             strBuilder += $"Mobility: {string.Join(", ", GameInfo.Mobility)}\n\n";
 
             strBuilder += "Attributes:\n";
-            strBuilder += $"{GameInfo.Attributes.ToDex()}\n\n";
 
             strBuilder += "Skills:\n";
-            strBuilder += $"{GameInfo.Skills.ToDex()}\n\n";
 
             strBuilder += "Possible Abilities:\n";
             strBuilder += $"{(GameInfo.PossibleAbilities.Any() ? string.Join("\n", GameInfo.PossibleAbilities.Select(a => a)) : "None")}\n\n";

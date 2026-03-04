@@ -1,6 +1,6 @@
 using System;
 
-namespace PokeBattleSim.Data.Entities
+namespace PokeBattleSim.Data.Entities.Pokemon.Moves
 {
     public class MoveStats(int _priority = 0, int _hitDice = 0, int _hitAutos = 0, int _damageDice = 0, int _damageAutos = 0, IEnumerable<Tag>? _tags = null)
     {

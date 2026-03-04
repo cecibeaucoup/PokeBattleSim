@@ -1,20 +1,36 @@
 using System;
+using PokeBattleSim.Data.Entities.Pokemon.Moves;
 using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Entities.Pokemon
 {
-    public class Merit (MeritTypes _type, MeritFocus _focus, Attributes _attributeBoost, Skills _skillBoost, Move? _chosenMove = null, PokemonTypes _boostedType = PokemonTypes.None)
+    public class Merit
     {
-        public MeritTypes Type { get; set; } = _type;
+        public Merit(MeritTypes _type, MeritFocus _focus, IEnumerable<Attribute> _statBoost, Move? _chosenMove = null, PokemonTypes _boostedType = PokemonTypes.None)
+        {
+            MeritType = _type;
+            Focus = _focus;
+            StatBoost = (IEnumerable<IStat<Enum>>) _statBoost;
+            ChosenMove = _chosenMove;
+            BoostedType = _boostedType;
+        }
+
+        public Merit(MeritTypes _type, MeritFocus _focus, IEnumerable<Skill> _statBoost, Move? _chosenMove = null, PokemonTypes _boostedType = PokemonTypes.None)
+        {
+            MeritType = _type;
+            Focus = _focus;
+            StatBoost = (IEnumerable<IStat<Enum>>) _statBoost;
+            ChosenMove = _chosenMove;
+            BoostedType = _boostedType;
+        }
+
+        public MeritTypes MeritType { get; set; }
     
-        public MeritFocus Focus { get; set; } = _focus;
+        public MeritFocus Focus { get; set; } 
+        public IEnumerable<IStat<Enum>> StatBoost { get; set; }
 
-        public Attributes AttributeBoost { get; set; } = _attributeBoost;
+        public Move? ChosenMove { get; set; }
 
-        public Skills SkillBoost { get; set; } = _skillBoost;   
-
-        public Move ChosenMove { get; set; } = _chosenMove!;
-
-        public PokemonTypes BoostedType { get; set; } = _boostedType;
+        public PokemonTypes BoostedType { get; set; }
     }
 }

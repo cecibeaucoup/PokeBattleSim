@@ -11,8 +11,20 @@ public class PokemonSheetTests
     [Fact]
     public void PokemonSheet_InitializesFromDex()
     {
-        var attrs = new Attributes(1,1,1,1);
-        var skills = new Skills(0,0,0,0);
+        var attrs = new List<Attribute>()
+        {
+            new(1, "Power"),
+            new(1, "Toughness"),
+            new(1, "Speed"),
+            new(1, "Stamina")
+        };
+        var skills = new List<Skill>()
+        {
+            new(1, "Aim"),
+            new(1, "Brawl"),
+            new(1, "Efficiency"),
+            new(1, "Evasion")
+        };
         var mobility = new MobilityTypes[] { MobilityTypes.Ground };
         var dex = new PokemonDex("P", 1u, 1u, 1u, Morphologies.Animal, PokemonTypes.Normal, PokemonTypes.None, attrs, skills, mobility);
 

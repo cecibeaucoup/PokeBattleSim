@@ -34,12 +34,12 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         #region Game Info
 
-        public Dictionary<string, Attributes> AttributeValues { get; set; } = new Dictionary<string, Attributes>()
+        public Dictionary<string, IEnumerable<Attribute>> AttributeValues { get; set; } = new Dictionary<string, IEnumerable<Attribute>>()
         {
             { "Base", _dexEntry.GameInfo.Attributes },
         };
 
-        public Dictionary<string, Skills> SkillValues { get; set; } = new Dictionary<string, Skills>()
+        public Dictionary<string, IEnumerable<Skill>> SkillValues { get; set; } = new Dictionary<string, IEnumerable<Skill>>()
         {
             { "Base", _dexEntry.GameInfo.Skills },
         };
@@ -51,5 +51,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
         public IEnumerable<Merit> Merits { get; set; } = [];
 
         #endregion
+
+
     }
 }
