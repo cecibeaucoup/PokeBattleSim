@@ -2,7 +2,15 @@ namespace PokeBattleSim.Data.Enums;
 
 public enum TrainerRanks
 {
-    //To be added as soon as I find the reference for them
-    NotATrainer = 0,
-    EliteTrainer = 11
+    //If I ever find a post with the trainer ranks, update this
+    NotATrainer = -1,
+    NonLicensedTrainer = 0,
+    NoviceTrainer = 1,
+    AspirantTrainer = 3,
+    JourneymanTrainer = 5,
+    ExpertTrainer = 7,
+    AceTrainer = 9,
+    EliteTrainer = 11,
+    ChampionTrainer = 13,
+    MasterTrainer = 15,
 }
