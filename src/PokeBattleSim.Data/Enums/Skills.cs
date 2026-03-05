@@ -1,9 +1,10 @@
-namespace PokeBattleSim.Data.Enums;
-
-public enum Skills
+namespace PokeBattleSim.Data.Enums
 {
-    Aim = 0,
-    Brawl = 1,
-    Efficiency = 2,
-    Evasion = 3
+    public enum Skills
+    {
+        Aim = 0,
+        Brawl = 1,
+        Efficiency = 2,
+        Evasion = 3
+    }
 }

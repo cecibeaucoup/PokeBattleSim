@@ -1,5 +1,5 @@
-using System;
 using PokeBattleSim.Data.Entities.Pokemon.Dex;
+using PokeBattleSim.Data.Entities.Pokemon.Stats;
 using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Entities.Pokemon
@@ -34,15 +34,9 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         #region Game Info
 
-        public Dictionary<string, IEnumerable<Attribute>> AttributeValues { get; set; } = new Dictionary<string, IEnumerable<Attribute>>()
-        {
-            { "Base", _dexEntry.GameInfo.Attributes },
-        };
+        public IEnumerable<PokeAttribute> BaseAttributes { get; set; } =  _dexEntry.GameInfo.Attributes;
 
-        public Dictionary<string, IEnumerable<Skill>> SkillValues { get; set; } = new Dictionary<string, IEnumerable<Skill>>()
-        {
-            { "Base", _dexEntry.GameInfo.Skills },
-        };
+        public IEnumerable<PokeSkill> BaseSkills { get; set; } = _dexEntry.GameInfo.Skills;
 
         public IEnumerable<Ability> Abilities { get; set; } = [];
 
@@ -66,10 +60,10 @@ namespace PokeBattleSim.Data.Entities.Pokemon
             strBuilder += $"{(Abilities.Any() ? string.Join("\n", Abilities.Select(a => a.Name)) : "None")}\n\n";
 
             strBuilder += "Attributes:\n";
-            strBuilder += $"{AttributeValues["Base"].ToString()}\n\n";
+            strBuilder += $"{string.Join("\n", CalculateTotalAttributes().Select(a => $"{a.ToDex()}"))}\n\n";
 
             strBuilder += "Skills:\n";
-            strBuilder += $"{SkillValues["Base"].ToString()}\n\n";           
+            strBuilder += $"{string.Join("\n", CalculateTotalSkills().Select(s => $"{s.ToDex()}"))}\n\n";
 
             strBuilder += "Moves:\n";
             strBuilder += $"{(Moves.Any() ? string.Join("\n", Moves.Select(m => m)) : "None")}\n\n";
@@ -80,22 +74,47 @@ namespace PokeBattleSim.Data.Entities.Pokemon
             return strBuilder;
         }
 
-        private IEnumerable<Attribute> CalculateTotalAttributes()
+        private List<PokeAttribute> CalculateTotalAttributes()
         {
-            List<Attribute> totalAttributes = new List<Attribute>(AttributeValues["Base"]);
-            // Placeholder for attribute calculation logic based on base attributes, abilities, merits, etc.
-            foreach (var attr in AttributeValues)
-            {
-                
-            }
+            List<PokeAttribute> totalAttributes = [];
 
+            IEnumerable<Merit> attributeMerits = Merits.Where(m => m.MeritFocus == MeritFocus.Attributes);
+
+            foreach (var attr in Enum.GetValues<Attributes>())
+            {
+                var sum = BaseAttributes.Single(a => a.Name == attr).BaseValue;
+                
+                var meritBoost = attributeMerits
+                    .SelectMany(m => m.StatBoost)
+                    .OfType<PokeAttribute>()
+                    .Where(stat => stat.Name.Equals(attr))
+                    .Sum(stat => stat.BaseValue);
+
+                totalAttributes.Add(new PokeAttribute(sum + meritBoost, attr));
+            }            
             return totalAttributes;
         }
 
-        private IEnumerable<Skill> CalculateTotalSkills()
+        private List<PokeSkill> CalculateTotalSkills()
         {
-            // Placeholder for skill calculation logic based on base skills, abilities, merits, etc.
-            return SkillValues["Base"];
+            List<PokeSkill> totalSkills = [];
+
+            IEnumerable<Merit> skillMerits = Merits.Where(m => m.MeritFocus == MeritFocus.Skills);
+
+            foreach (var skill in Enum.GetValues<Skills>())
+            {
+                var sum = BaseSkills.Single(s => s.Name == skill).BaseValue;
+                
+                var meritBoost = skillMerits
+                    .SelectMany(m => m.StatBoost)
+                    .OfType<PokeSkill>()
+                    .Where(stat => stat.Name.Equals(skill))
+                    .Sum(stat => stat.BaseValue);
+
+                totalSkills.Add(new PokeSkill(sum + meritBoost, skill));
+            }
+
+            return totalSkills;
         }
     }
 }

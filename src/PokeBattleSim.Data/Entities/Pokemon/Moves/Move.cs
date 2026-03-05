@@ -1,4 +1,3 @@
-using System;
 using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Entities.Pokemon.Moves

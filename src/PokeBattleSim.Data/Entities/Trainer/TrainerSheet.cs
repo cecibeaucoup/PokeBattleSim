@@ -1,30 +1,30 @@
-using System;
 using PokeBattleSim.Data.Entities.Pokemon;
 using PokeBattleSim.Data.Enums;
 
-namespace PokeBattleSim.Data.Entities.Trainer;
-
-public class TrainerSheet(string _name, uint _age, Regions _currentRegion = Regions.None)
+namespace PokeBattleSim.Data.Entities.Trainer
 {
-    public string Name { get; set; } = _name;
+    public class TrainerSheet(string _name, uint _age, Regions _currentRegion = Regions.None)
+    {
+        public string Name { get; set; } = _name;
 
-    public uint Age { get; set; } = _age;
+        public uint Age { get; set; } = _age;
 
-    public Regions CurrentRegion { get; set; } = _currentRegion;
+        public Regions CurrentRegion { get; set; } = _currentRegion;
 
-    public IEnumerable<Badge> Badges { get; set; } = [];
+        public IEnumerable<Badge> Badges { get; set; } = [];
 
-    public uint TrainerLevel { get; set; } = 1;
+        public uint TrainerLevel { get; set; } = 1;
 
-    public TrainerRanks Rank { get; set; } = TrainerRanks.NotATrainer;
+        public TrainerRanks Rank { get; set; } = TrainerRanks.NotATrainer;
 
-    public IEnumerable<Trait> Traits { get; set; } = [];
+        public IEnumerable<Trait> Traits { get; set; } = [];
 
-    public uint CarryLimit { get; set; } = 6;
+        public uint CarryLimit { get; set; } = 6;
 
-    public uint PokemonLimit { get; set; } = 10;
+        public uint PokemonLimit { get; set; } = 10;
 
-    public IEnumerable<PokemonSheet> PokemonParty { get; set; } = [];
+        public IEnumerable<PokemonSheet> PokemonParty { get; set; } = [];
 
-    public IEnumerable<PokemonSheet> PokemonBox { get; set; } = [];
+        public IEnumerable<PokemonSheet> PokemonBox { get; set; } = [];
+    }
 }

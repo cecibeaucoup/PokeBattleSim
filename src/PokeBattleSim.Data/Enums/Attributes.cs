@@ -1,9 +1,10 @@
-namespace PokeBattleSim.Data.Enums;
-
-public enum Attributes
+namespace PokeBattleSim.Data.Enums
 {
-    Power = 0,
-    Toughness = 1,
-    Speed = 2,
-    Stamina = 3
+    public enum Attributes
+    {
+        Power = 0,
+        Toughness = 1,
+        Speed = 2,
+        Stamina = 3
+    }
 }

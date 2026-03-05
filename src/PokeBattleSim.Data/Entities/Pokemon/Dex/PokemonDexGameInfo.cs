@@ -1,38 +1,39 @@
-using System;
+using PokeBattleSim.Data.Entities.Pokemon.Stats;
 using PokeBattleSim.Data.Enums;
 
-namespace PokeBattleSim.Data.Entities.Pokemon.Dex;
-
-public class PokemonDexGameInfo(IEnumerable<Attribute> _attributes, IEnumerable<Skill> _skills, IEnumerable<MobilityTypes> _mobility, 
-                                IEnumerable<string>? _possibleAbilities = null, IEnumerable<string>? _possibleMoves = null)
+namespace PokeBattleSim.Data.Entities.Pokemon.Dex
 {
-    public IEnumerable<Attribute> Attributes { get; set; } = _attributes;
-
-    public IEnumerable<Skill> Skills { get; set; } = _skills;
-
-    public IEnumerable<MobilityTypes> Mobility { get; set; } = _mobility;
-
-    public IEnumerable<string> PossibleAbilities { get; set; } = _possibleAbilities ?? [];
-
-    public IEnumerable<string> PossibleMoves { get; set; } = _possibleMoves ?? [];
-
-    public string ToDex()
+    public class PokemonDexGameInfo(IEnumerable<PokeAttribute> _attributes, IEnumerable<PokeSkill> _skills, IEnumerable<MobilityTypes> _mobility, 
+                                    IEnumerable<string>? _possibleAbilities = null, IEnumerable<string>? _possibleMoves = null)
     {
-        string strBuilder = "";
+        public IEnumerable<PokeAttribute> Attributes { get; set; } = _attributes;
 
-        strBuilder += $"Mobility: {string.Join(", ", Mobility)}\n\n";
+        public IEnumerable<PokeSkill> Skills { get; set; } = _skills;
 
-        strBuilder += "Attributes:\n";
-        strBuilder += $"{string.Join("\n", Attributes.Select(a => a.ToDex()))}\n\n";
+        public IEnumerable<MobilityTypes> Mobility { get; set; } = _mobility;
 
-        strBuilder += "Skills:\n";
-        strBuilder += $"{string.Join("\n", Skills.Select(s => s.ToDex()))}\n\n";
+        public IEnumerable<string> PossibleAbilities { get; set; } = _possibleAbilities ?? [];
 
-        strBuilder += "Possible Abilities:\n";
-        strBuilder += $"{(PossibleAbilities.Any() ? string.Join("\n", PossibleAbilities.Select(a => a)) : "None")}\n\n";
-        strBuilder += "Possible Moves:\n";
-        strBuilder += $"{(PossibleMoves.Any() ? string.Join("\n", PossibleMoves.Select(m => m)) : "None")}\n";
+        public IEnumerable<string> PossibleMoves { get; set; } = _possibleMoves ?? [];
 
-        return strBuilder;
+        public string ToDex()
+        {
+            string strBuilder = "";
+
+            strBuilder += $"Mobility: {string.Join(", ", Mobility)}\n\n";
+
+            strBuilder += "Attributes:\n";
+            strBuilder += $"{string.Join("\n", Attributes.Select(a => a.ToDex()))}\n\n";
+
+            strBuilder += "Skills:\n";
+            strBuilder += $"{string.Join("\n", Skills.Select(s => s.ToDex()))}\n\n";
+
+            strBuilder += "Possible Abilities:\n";
+            strBuilder += $"{(PossibleAbilities.Any() ? string.Join("\n", PossibleAbilities.Select(a => a)) : "None")}\n\n";
+            strBuilder += "Possible Moves:\n";
+            strBuilder += $"{(PossibleMoves.Any() ? string.Join("\n", PossibleMoves.Select(m => m)) : "None")}\n";
+
+            return strBuilder;
+        }
     }
 }

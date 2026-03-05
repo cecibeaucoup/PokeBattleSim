@@ -1,5 +1,6 @@
 using PokeBattleSim.Data.Entities.Pokemon.Dex;
 using PokeBattleSim.Data.Entities.Pokemon.Moves;
+using PokeBattleSim.Data.Entities.Pokemon.Stats;
 using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Entities.Pokemon
@@ -15,7 +16,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
         }
 
         public PokemonDex(string _name, uint _dexNumber, uint _length, uint _weight, Morphologies _morphology, PokemonTypes _priType, PokemonTypes _secType,
-                            IEnumerable<Attribute> _attributes, IEnumerable<Skill> _skills, IEnumerable<MobilityTypes> _mobility, IEnumerable<string>? _possibleAbilities = null, 
+                            IEnumerable<PokeAttribute> _attributes, IEnumerable<PokeSkill> _skills, IEnumerable<MobilityTypes> _mobility, IEnumerable<string>? _possibleAbilities = null, 
                             IEnumerable<string>? _possibleMoves = null)
         {
             BaseInfo = new PokemonDexBaseInfo(_name, _dexNumber, _length, _weight, _morphology, _priType, _secType);

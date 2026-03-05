@@ -1,5 +1,3 @@
-using System;
-
 namespace PokeBattleSim.Data.Enums
 {
     public enum AttributeGrades

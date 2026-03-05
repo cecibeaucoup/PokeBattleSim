@@ -1,5 +1,3 @@
-using System;
-
 namespace PokeBattleSim.Data.Entities.Pokemon
 {
     public class Ability(uint _id, string _name, string _description)
