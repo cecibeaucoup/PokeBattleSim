@@ -20,7 +20,7 @@ public class MeritTests
             new(1, "Stamina") 
         };
 
-        var m = new Merit(MeritTypes.Ace, MeritFocus.Attributes, attrs.AsEnumerable());
+        var m = new Merit(MeritTypes.Ace, MeritFocus.Attributes, attrs);
         Assert.Equal(MeritTypes.Ace, m.MeritType);
         Assert.Equal(MeritFocus.Attributes, m.Focus);
     }

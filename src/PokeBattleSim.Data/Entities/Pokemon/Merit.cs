@@ -10,7 +10,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
         {
             MeritType = _type;
             Focus = _focus;
-            StatBoost = (IEnumerable<IStat<Enum>>) _statBoost;
+            StatBoost = _statBoost.Cast<IStat<Enum>>();
             ChosenMove = _chosenMove;
             BoostedType = _boostedType;
         }
@@ -19,14 +19,15 @@ namespace PokeBattleSim.Data.Entities.Pokemon
         {
             MeritType = _type;
             Focus = _focus;
-            StatBoost = (IEnumerable<IStat<Enum>>) _statBoost;
+            StatBoost =  _statBoost.Cast<IStat<Enum>>();
             ChosenMove = _chosenMove;
             BoostedType = _boostedType;
         }
 
         public MeritTypes MeritType { get; set; }
     
-        public MeritFocus Focus { get; set; } 
+        public MeritFocus Focus { get; set; }
+
         public IEnumerable<IStat<Enum>> StatBoost { get; set; }
 
         public Move? ChosenMove { get; set; }
