@@ -52,6 +52,50 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         #endregion
 
+        public string ToSheet()
+        {
+            string strBuilder = $"Nickname: {Nickname}\n";
+            strBuilder += $"Length: {Length} m - ";
+            strBuilder += $"Weight: {Weight} kg\n";
+            strBuilder += $"Morphology: {DexInfo.Morphology}\n";
+            strBuilder += $"Type: {DexInfo.PrimaryType}{(DexInfo.SecondaryType != PokemonTypes.None ? $"/{DexInfo.SecondaryType}" : "")}\n";
+            strBuilder += $"Health: {HealthPoints.Item1}/{HealthPoints.Item2}\n";
+            strBuilder += $"Energy: {EnergyLevels.Item1}/{EnergyLevels.Item2}\n";
 
+            strBuilder += "Abilities:\n";
+            strBuilder += $"{(Abilities.Any() ? string.Join("\n", Abilities.Select(a => a.Name)) : "None")}\n\n";
+
+            strBuilder += "Attributes:\n";
+            strBuilder += $"{AttributeValues["Base"].ToString()}\n\n";
+
+            strBuilder += "Skills:\n";
+            strBuilder += $"{SkillValues["Base"].ToString()}\n\n";           
+
+            strBuilder += "Moves:\n";
+            strBuilder += $"{(Moves.Any() ? string.Join("\n", Moves.Select(m => m)) : "None")}\n\n";
+
+            strBuilder += "Merits:\n";
+            strBuilder += $"{(Merits.Any() ? string.Join("\n", Merits.Select(m => m.MeritType)) : "None")}\n";
+
+            return strBuilder;
+        }
+
+        private IEnumerable<Attribute> CalculateTotalAttributes()
+        {
+            List<Attribute> totalAttributes = new List<Attribute>(AttributeValues["Base"]);
+            // Placeholder for attribute calculation logic based on base attributes, abilities, merits, etc.
+            foreach (var attr in AttributeValues)
+            {
+                
+            }
+
+            return totalAttributes;
+        }
+
+        private IEnumerable<Skill> CalculateTotalSkills()
+        {
+            // Placeholder for skill calculation logic based on base skills, abilities, merits, etc.
+            return SkillValues["Base"];
+        }
     }
 }

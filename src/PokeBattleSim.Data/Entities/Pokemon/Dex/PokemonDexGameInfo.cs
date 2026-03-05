@@ -15,4 +15,24 @@ public class PokemonDexGameInfo(IEnumerable<Attribute> _attributes, IEnumerable<
     public IEnumerable<string> PossibleAbilities { get; set; } = _possibleAbilities ?? [];
 
     public IEnumerable<string> PossibleMoves { get; set; } = _possibleMoves ?? [];
+
+    public string ToDex()
+    {
+        string strBuilder = "";
+
+        strBuilder += $"Mobility: {string.Join(", ", Mobility)}\n\n";
+
+        strBuilder += "Attributes:\n";
+        strBuilder += $"{string.Join("\n", Attributes.Select(a => a.ToDex()))}\n\n";
+
+        strBuilder += "Skills:\n";
+        strBuilder += $"{string.Join("\n", Skills.Select(s => s.ToDex()))}\n\n";
+
+        strBuilder += "Possible Abilities:\n";
+        strBuilder += $"{(PossibleAbilities.Any() ? string.Join("\n", PossibleAbilities.Select(a => a)) : "None")}\n\n";
+        strBuilder += "Possible Moves:\n";
+        strBuilder += $"{(PossibleMoves.Any() ? string.Join("\n", PossibleMoves.Select(m => m)) : "None")}\n";
+
+        return strBuilder;
+    }
 }

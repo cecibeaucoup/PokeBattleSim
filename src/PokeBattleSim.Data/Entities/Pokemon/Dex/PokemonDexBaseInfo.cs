@@ -18,4 +18,15 @@ public class PokemonDexBaseInfo(string _name, uint _dexNumber, uint _length, uin
     public PokemonTypes PrimaryType { get; set; } = _priType;
 
     public PokemonTypes SecondaryType { get; set; } = _secType;
+
+    public string ToDex()
+    {
+        string strBuilder = $"#{DexNumber} - {Name}\n";
+        strBuilder += $"Length: {Length} m - ";
+        strBuilder += $"Weight: {Weight} kg\n";
+        strBuilder += $"Morphology: {Morphology}\n";
+        strBuilder += $"Type: {PrimaryType}{(SecondaryType != PokemonTypes.None ? $"/{SecondaryType}" : "")}\n";
+
+        return strBuilder;
+    }
 }

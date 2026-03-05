@@ -14,10 +14,10 @@ public class MeritTests
     {
         var attrs = new List<Attribute>()
         { 
-            new(1, "Power"),
-            new(1, "Toughness"),
-            new(1, "Speed"),
-            new(1, "Stamina") 
+            new(1, Attributes.Power),
+            new(1, Attributes.Toughness),
+            new(1, Attributes.Speed),
+            new(1, Attributes.Stamina) 
         };
 
         var m = new Merit(MeritTypes.Ace, MeritFocus.Attributes, attrs);
