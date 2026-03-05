@@ -19,7 +19,6 @@ namespace PokeBattleSim.Data.Tests
             Assert.Equal(0, moveStats.HitAutos);
             Assert.Equal(0, moveStats.DamageDice);
             Assert.Equal(0, moveStats.DamageAutos);
-            Assert.Empty(moveStats.Tags);
         }
 
         [Fact]
@@ -32,28 +31,6 @@ namespace PokeBattleSim.Data.Tests
             Assert.Equal(1, moveStats.HitAutos);
             Assert.Equal(5, moveStats.DamageDice);
             Assert.Equal(6, moveStats.DamageAutos);
-        }
-
-        [Fact]
-        public void MoveStats_WithTags()
-        {
-            var tags = new List<Tag>
-            {
-                new("Powerful", "High damage"),
-                new("Accurate", "Rarely misses")
-            };
-
-            var moveStats = new MoveStats(1, 2, 0, 4, 5, tags);
-
-            Assert.Equal(2, moveStats.Tags.Count());
-        }
-
-        [Fact]
-        public void MoveStats_NullTagsDefaultsToEmpty()
-        {
-            var moveStats = new MoveStats(1, 2, 0, 4, 5, null);
-
-            Assert.Empty(moveStats.Tags);
         }
 
         [Fact]
@@ -80,17 +57,7 @@ namespace PokeBattleSim.Data.Tests
             Assert.Contains("Damage Dice: 5", result);
             Assert.Contains("Auto Damage 6", result);
         }
-
-        [Fact]
-        public void MoveStats_ToDexWithTags()
-        {
-            var tags = new List<Tag> { new("Powerful", "Desc") };
-            var moveStats = new MoveStats(0, 0, 0, 0, 0, tags);
-            var result = moveStats.ToDex();
-
-            Assert.Contains("Tags:", result);
-        }
-
+        
         [Fact]
         public void MoveStats_ToDexWithoutTagsNoTagsLine()
         {

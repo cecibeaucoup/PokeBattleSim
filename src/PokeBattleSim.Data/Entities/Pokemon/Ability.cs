@@ -1,6 +1,8 @@
+using PokeBattleSim.Data.Enums;
+
 namespace PokeBattleSim.Data.Entities.Pokemon
 {
-    public class Ability(uint _id, string _name, string _description)
+    public class Ability(uint _id, string _name, string _description, IEnumerable<Tags>? _tags = null)
     {
         public uint AbilityId { get; set; } = _id;
 
@@ -8,7 +10,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         public string Description { get; set; } = _description;
 
-        public IEnumerable<Tag> Tags { get; set; } = [];
+        public IEnumerable<Tags> Tags { get; set; } = _tags ?? [];
 
         public string ToDex() => $"{Name}: {Description}\n{(Tags.Any() ? $"Tags: {string.Join(", ", Tags)}\n" : "")}\n";
     }

@@ -27,7 +27,7 @@ namespace PokeBattleSim.Data.Tests
         public void Move_WithSecondaryTypeAndTags()
         {
             var moveStats = new MoveStats();
-            var tags = new List<Tag> { new("Powerful", "High power move") };
+            var tags = new List<Tags> { Tags.FightingSTAB };
             var move = new Move(1u, "Aqua-Electric", PokemonTypes.Water, "Hybrid move", moveStats, false, PokemonTypes.Electric, tags);
 
             Assert.Equal(PokemonTypes.Water, move.Type);

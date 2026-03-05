@@ -2,6 +2,7 @@ using Xunit;
 using PokeBattleSim.Data.Entities.Trainer;
 using PokeBattleSim.Data.Entities;
 using System.Linq;
+using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Tests
 {
@@ -12,8 +13,8 @@ namespace PokeBattleSim.Data.Tests
         {
             var tags = new []
             {
-                new Tag("Tag1", "Description 1"),
-                new Tag("Tag2", "Description 2")
+                Tags.FightingSTAB,
+                Tags.CritImmune
             };
             var t = new Trait(1u, "Brave", "Fearless", tags);
             Assert.Equal(1u, t.TraitId);
@@ -63,16 +64,16 @@ namespace PokeBattleSim.Data.Tests
         {
             var tags = new []
             {
-                new Tag("Tag1", "Description 1"),
-                new Tag("Tag2", "Description 2")
+                Tags.FightingSTAB,
+                Tags.CritImmune
             };
             var t = new Trait(1u, "Brave", "Fearless", tags);
             var result = t.ToDex();
 
             Assert.Contains("Brave", result);
             Assert.Contains("Fearless", result);
-            Assert.Contains("Tag1", result);
-            Assert.Contains("Tag2", result);
+            Assert.Contains("FightingSTAB", result);
+            Assert.Contains("CritImmune", result);
         }
     }
 }

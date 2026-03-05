@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Xunit;
 using PokeBattleSim.Data.Entities;
 using PokeBattleSim.Data.Entities.Pokemon;
+using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Tests
 {
@@ -43,7 +44,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void Ability_WithTags()
         {
-            var tags = new List<Tag> { new("Useful", "A useful tag") };
+            var tags = new List<Tags> { Tags.ElectricSTAB };
             var ability = new Ability(1u, "Static", "Description") { Tags = tags };
 
             Assert.Single(ability.Tags);
@@ -63,7 +64,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void Ability_ToDexWithTags()
         {
-            var tags = new List<Tag> { new("Tag1", "Desc1"), new("Tag2", "Desc2") };
+            var tags = new List<Tags> { Tags.ElectricSTAB, Tags.ShockVeil };
             var ability = new Ability(1u, "Static", "Description") { Tags = tags };
             var result = ability.ToDex();
 
