@@ -24,6 +24,8 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         public Grades Friendship { get; set; } = Grades.E;
 
+        public Personalities Personality { get; set; } = SelectRandomPersonality();
+
         #endregion
 
         #region Game Stats
@@ -117,6 +119,12 @@ namespace PokeBattleSim.Data.Entities.Pokemon
             }
 
             return totalSkills;
+        }
+    
+        private static Personalities SelectRandomPersonality()
+        {
+            var personalities = Enum.GetValues<Personalities>();
+            return personalities[Random.Shared.Next(personalities.Length)];
         }
     }
 }

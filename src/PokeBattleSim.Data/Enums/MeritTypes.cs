@@ -12,6 +12,7 @@ namespace PokeBattleSim.Data.Enums
         SignatureMove = 6,
         CombinationMove = 7,
 
+
         // Found exclusively in Red Flag's Another Life
         Foundation = 8, 
         PowerAttack = 9,
@@ -20,7 +21,9 @@ namespace PokeBattleSim.Data.Enums
 
         // Found exclusively in Zephias' To Forge Our Story
         SupportMastery = 12,
-        SpeciesTraits = 13
+        SpeciesTraits = 13,
+        Personality = 14,
+        StrongFoundation = 15
     }
 
 }

@@ -40,6 +40,7 @@ namespace PokeBattleSim.Data.Tests
             Assert.Equal(dex.BaseInfo.Length, sheet.Length);
             Assert.Equal(dex.GameInfo.Attributes, sheet.BaseAttributes);
             Assert.Equal(Grades.E, sheet.Friendship);
+            Assert.Contains(sheet.Personality, Enum.GetValues<Personalities>()); // Personality should be a valid enum value
         }
 
         [Fact]
