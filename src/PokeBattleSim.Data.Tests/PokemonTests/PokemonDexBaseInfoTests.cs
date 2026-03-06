@@ -9,7 +9,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDexBaseInfo_PropertiesInitializedCorrectly()
         {
-            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None);
+            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field);
 
             Assert.Equal("Pikachu", baseInfo.Name);
             Assert.Equal(25u, baseInfo.DexNumber);
@@ -23,7 +23,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDexBaseInfo_PropertiesCanBeModified()
         {
-            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None);
+            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field);
 
             baseInfo.Name = "Raichu";
             baseInfo.Length = 8u;
@@ -37,7 +37,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDexBaseInfo_ToDexSingleType()
         {
-            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None);
+            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field);
             var result = baseInfo.ToDex();
 
             Assert.Contains("#25", result);
@@ -51,7 +51,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDexBaseInfo_ToDexDualType()
         {
-            var baseInfo = new PokemonDexBaseInfo("Charizard", 6u, 17u, 90u, Morphologies.Animal, PokemonTypes.Fire, PokemonTypes.Flying);
+            var baseInfo = new PokemonDexBaseInfo("Charizard", 6u, 17u, 90u, Morphologies.Animal, PokemonTypes.Fire, PokemonTypes.Flying, EggGroups.Monster);
             var result = baseInfo.ToDex();
 
             Assert.Contains("Fire/Flying", result);
@@ -60,7 +60,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDexBaseInfo_ToDexContainsMorphology()
         {
-            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None);
+            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Monster);
             var result = baseInfo.ToDex();
 
             Assert.Contains("Animal", result);

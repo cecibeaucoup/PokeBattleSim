@@ -29,7 +29,7 @@ namespace PokeBattleSim.Data.Tests
                 new(1, Skills.Evasion)
             };
             var mobility = new MobilityTypes[] { MobilityTypes.Ground };
-            return new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, attrs, skills, mobility);
+            return new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field, attrs, skills, mobility);
         }
 
         private readonly List<PokeAttribute> _attrs = new()
@@ -53,7 +53,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDex_ConstructorWithBaseAndGameInfo()
         {
-            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None);
+            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field);
             var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility);
 
             var dex = new PokemonDex(baseInfo, gameInfo);
@@ -65,7 +65,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDex_ConstructorWithParameters()
         {
-            var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, _attrs, _skills, _mobility);
+            var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field, _attrs, _skills, _mobility);
 
             Assert.Equal("Pikachu", dex.BaseInfo.Name);
             Assert.Equal(25u, dex.BaseInfo.DexNumber);
@@ -82,7 +82,8 @@ namespace PokeBattleSim.Data.Tests
             var abilities = new[] { "Static", "Lightning Rod" };
             var moves = new[] { "Thunderbolt", "Quick Attack" };
 
-            var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, _attrs, _skills, _mobility, abilities, moves);
+            var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, 
+                                        EggGroups.Field, _attrs, _skills, _mobility, _possibleAbilities: abilities, _possibleMoves: moves);
 
             Assert.Equal(2, dex.GameInfo.PossibleAbilities.Count());
             Assert.Equal(2, dex.GameInfo.PossibleMoves.Count());
@@ -91,7 +92,8 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDex_ToDex_ContainsExpectedInfo()
         {
-            var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, _attrs, _skills, _mobility);
+            var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, 
+                                        EggGroups.Field, _attrs, _skills, _mobility);
             var result = dex.ToDex();
 
             Assert.Contains("#25", result);
@@ -103,7 +105,8 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDex_DualTypeHandledCorrectly()
         {
-            var dex = new PokemonDex("Charizard", 6u, 17u, 90u, Morphologies.Animal, PokemonTypes.Fire, PokemonTypes.Flying, _attrs, _skills, _mobility);
+            var dex = new PokemonDex("Charizard", 6u, 17u, 90u, Morphologies.Animal, PokemonTypes.Fire, PokemonTypes.Flying, 
+                                        EggGroups.Monster, _attrs, _skills, _mobility);
 
             Assert.Equal(PokemonTypes.Fire, dex.BaseInfo.PrimaryType);
             Assert.Equal(PokemonTypes.Flying, dex.BaseInfo.SecondaryType);
@@ -153,7 +156,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDex_AddAbility_ToEmptyList()
         {
-            var baseInfo = new PokemonDexBaseInfo("Test", 1u, 1u, 1u, Morphologies.Animal, PokemonTypes.Normal, PokemonTypes.None);
+            var baseInfo = new PokemonDexBaseInfo("Test", 1u, 1u, 1u, Morphologies.Animal, PokemonTypes.Normal, PokemonTypes.None, EggGroups.NoGroup);
             var gameInfo = new PokemonDexGameInfo(
                 new[] { new PokeAttribute(1, Attributes.Power) },
                 new[] { new PokeSkill(1, Skills.Aim) },
@@ -215,7 +218,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDex_AddMove_ToEmptyList()
         {
-            var baseInfo = new PokemonDexBaseInfo("Test", 1u, 1u, 1u, Morphologies.Animal, PokemonTypes.Normal, PokemonTypes.None);
+            var baseInfo = new PokemonDexBaseInfo("Test", 1u, 1u, 1u, Morphologies.Animal, PokemonTypes.Normal, PokemonTypes.None, EggGroups.NoGroup);
             var gameInfo = new PokemonDexGameInfo(
                 new[] { new PokeAttribute(1, Attributes.Power) },
                 new[] { new PokeSkill(1, Skills.Aim) },
@@ -267,8 +270,8 @@ namespace PokeBattleSim.Data.Tests
             var abilities = new[] { "Lightning Rod" };
             
             var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, 
-                PokemonTypes.Electric, PokemonTypes.None, attrs, skills, 
-                new[] { MobilityTypes.Ground }, abilities);
+                PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field, attrs, skills, 
+                new[] { MobilityTypes.Ground }, _possibleAbilities: abilities);
 
             var newAbility = new Ability(2u, "Static", "Paralyze effect");
             dex.AddAbility(newAbility);

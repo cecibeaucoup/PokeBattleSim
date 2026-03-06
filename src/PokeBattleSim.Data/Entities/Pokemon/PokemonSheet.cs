@@ -16,7 +16,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         public uint Weight { get; set; } = _dexEntry.BaseInfo.Weight;
 
-        public IEnumerable<MobilityTypes> Mobility { get; private set; } = _dexEntry.GameInfo.Mobility;
+        public IEnumerable<MobilityTypes> Mobility { get; set; } = _dexEntry.GameInfo.Mobility;
 
         public bool IsFainted { get; set; } = false;
 

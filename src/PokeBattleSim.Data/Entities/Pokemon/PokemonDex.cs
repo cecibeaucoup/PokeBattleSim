@@ -16,10 +16,10 @@ namespace PokeBattleSim.Data.Entities.Pokemon
         }
 
         public PokemonDex(string _name, uint _dexNumber, uint _length, uint _weight, Morphologies _morphology, PokemonTypes _priType, PokemonTypes _secType,
-                            IEnumerable<PokeAttribute> _attributes, IEnumerable<PokeSkill> _skills, IEnumerable<MobilityTypes> _mobility, IEnumerable<string>? _possibleAbilities = null, 
-                            IEnumerable<string>? _possibleMoves = null)
+                            EggGroups _eggGroup1, IEnumerable<PokeAttribute> _attributes, IEnumerable<PokeSkill> _skills, IEnumerable<MobilityTypes> _mobility, 
+                            EggGroups _eggGroup2 = EggGroups.NoGroup, IEnumerable<string>? _possibleAbilities = null, IEnumerable<string>? _possibleMoves = null)
         {
-            BaseInfo = new PokemonDexBaseInfo(_name, _dexNumber, _length, _weight, _morphology, _priType, _secType);
+            BaseInfo = new PokemonDexBaseInfo(_name, _dexNumber, _length, _weight, _morphology, _priType, _secType, _eggGroup1, _eggGroup2);
             GameInfo = new PokemonDexGameInfo(_attributes, _skills, _mobility, _possibleAbilities, _possibleMoves);
         }
         #endregion
