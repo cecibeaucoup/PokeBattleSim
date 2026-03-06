@@ -2,7 +2,7 @@ namespace PokeBattleSim.Data.Enums;
 
 public enum Tags
 {
-    CritImmune = 0,
+    EmptyTag = 0,
     
     #region Movement Tags
     GroundMovement = 1,
@@ -42,5 +42,106 @@ public enum Tags
     FlareVeil = 29,
     ShockVeil = 30,
     #endregion
+
+    #region Mitigation Tags
+
+    NormalMitigation = 31,
+    FightingMitigation = 32,
+    FlyingMitigation = 33,
+    PoisonMitigation = 34,
+    GroundMitigation = 35,
+    RockMitigation = 36,
+    BugMitigation = 37,
+    GhostMitigation = 38,
+    SteelMitigation = 39,
+    FireMitigation = 40,
+    WaterMitigation = 41,
+    GrassMitigation = 42,
+    ElectricMitigation = 43,
+    PsychicMitigation = 44,
+    IceMitigation = 45,
+    DragonMitigation = 46,
+    DarkMitigation = 47,
+    FairyMitigation = 48,
+
+    #endregion
+
+    #region Weather Tags
+    
+    SunnyWeather = 49,
+    RainyWeather = 50,
+    SandyWeather = 51,
+    SnowyWeather = 52,
+
+    #endregion
+
+    #region Roll Manipulation Tags
+
+    ExplodingDice = 53,
+    RerollDice = 54,
+    Threshould = 55,
+    Minimum = 56,
+    Maximum = 57,
+    ThreshouldPlus1 = 58,
+    ThreshouldPlus2 = 59,
+    ThreshouldMinus1 = 60,
+    ThreshouldMinus2 = 61,
+    MinimumPlus1 = 62,
+    MinimumPlus2 = 63,
+    MaximumMinus1 = 64,
+    MaximumMinus2 = 65,
+    
+    #endregion
+
+    #region Dice Manipulation Tags
+
+    DoubleDice = 66,
+    TwoAndHalfDice = 67,
+    TripleDice = 68,
+    ThreeAndHalfDice = 69,
+    QuadrupleDice = 70,
+    HalfDice = 71,
+    OneThirdDice = 72,
+    QuarterDice = 73,
+    OneFifthDice = 74,
+    OneSixthDice = 75,
+    OneEighthDice = 76,
+    ZeroDice = 77,
+    DiceIntoAutos = 78,
+
+    #endregion
+
+    #region Auto-Successes Tags
+
+    DoubleAuto = 79,
+    DoubleAndHalfAuto = 80,
+    TripleAuto = 81,
+    TripleAndHalfAuto = 82,
+    QuadrupleAuto = 83,
+    HalfAuto = 84,
+    OneThirdAuto = 85,
+    OneQuarterAuto = 86,
+    OneFifthAuto = 87,
+    OneSixthAuto = 88,
+    OneEighthAuto = 89,
+    ZeroAuto = 90,
+    AutosIntoDice = 91,
+
+    #endregion
+
+    #region Attribute and Skill Checks
+
+    PowerCheck = 92,
+    SpeedCheck = 93,
+    ToughnessCheck = 94,
+    StaminaCheck = 95,
+    AimCheck = 96,
+    EvasionCheck = 97,
+    EfficiencyCheck = 98,
+    BrawlCheck = 99,
+
+    #endregion
+
+    
 
 }

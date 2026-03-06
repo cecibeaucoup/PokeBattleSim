@@ -14,7 +14,7 @@ namespace PokeBattleSim.Data.Tests
             var tags = new []
             {
                 Tags.FightingSTAB,
-                Tags.CritImmune
+                Tags.DoubleDice
             };
             var t = new Trait(1u, "Brave", "Fearless", tags);
             Assert.Equal(1u, t.TraitId);
@@ -65,7 +65,7 @@ namespace PokeBattleSim.Data.Tests
             var tags = new []
             {
                 Tags.FightingSTAB,
-                Tags.CritImmune
+                Tags.DoubleDice
             };
             var t = new Trait(1u, "Brave", "Fearless", tags);
             var result = t.ToDex();
