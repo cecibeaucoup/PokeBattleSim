@@ -1,6 +1,6 @@
 namespace PokeBattleSim.Data.Enums
 {
-    public enum SkillGrades
+    public enum Grades
     {
         E = 0,
         D = 1,

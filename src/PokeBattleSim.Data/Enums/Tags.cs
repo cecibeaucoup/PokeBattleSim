@@ -34,7 +34,7 @@ public enum Tags
     #endregion
 
     #region Veil Tags
-    StormVeil = 24,
+    WaterVeil = 24,
     SandVeil = 25,
     SnowVeil = 26,
     MistVeil = 27,
@@ -142,6 +142,29 @@ public enum Tags
 
     #endregion
 
-    
+    #region Natural Gift Tags
 
+    NaturalGiftNormal = 100,
+    NaturalGiftFighting = 101,
+    NaturalGiftFlying = 102,
+    NaturalGiftPoison = 103,
+    NaturalGiftGround = 104,
+    NaturalGiftRock = 105,
+    NaturalGiftBug = 106,
+    NaturalGiftGhost = 107,
+    NaturalGiftSteel = 108,
+    NaturalGiftFire = 109,
+    NaturalGiftWater = 110,
+    NaturalGiftGrass = 111,
+    NaturalGiftElectric = 112,
+    NaturalGiftPsychic = 113,
+    NaturalGiftIce = 114,
+    NaturalGiftDragon = 115,
+    NaturalGiftDark = 116,
+    NaturalGiftFairy = 117,
+
+    #endregion
+
+    #region 
+    #endregion
 }

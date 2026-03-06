@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
-using PokeBattleSim.Data.Entities;
 using PokeBattleSim.Data.Entities.Pokemon.Moves;
 
 namespace PokeBattleSim.Data.Tests

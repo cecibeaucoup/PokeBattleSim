@@ -2,13 +2,13 @@ using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Entities.Pokemon.Stats
 {
-    public class PokeSkill(int _baseValue, Skills _name): IStat<Skills, SkillGrades>
+    public class PokeSkill(int _baseValue, Skills _name): IStat<Skills, Grades>
     {
         public int BaseValue { get; set; } = _baseValue;
     
         public Skills Name { get; set; } = _name;
 
-        public SkillGrades Grade => (SkillGrades)BaseValue;
+        public Grades Grade => (Grades)BaseValue;
 
         public string ToDex() => $"- {Name}: {Grade} ({BaseValue})";
 

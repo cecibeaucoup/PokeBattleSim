@@ -1,6 +1,5 @@
 using Xunit;
 using PokeBattleSim.Data.Entities.Trainer;
-using PokeBattleSim.Data.Entities;
 using System.Linq;
 using PokeBattleSim.Data.Enums;
 
@@ -73,7 +72,7 @@ namespace PokeBattleSim.Data.Tests
             Assert.Contains("Brave", result);
             Assert.Contains("Fearless", result);
             Assert.Contains("FightingSTAB", result);
-            Assert.Contains("CritImmune", result);
+            Assert.Contains("DoubleDice", result);
         }
     }
 }

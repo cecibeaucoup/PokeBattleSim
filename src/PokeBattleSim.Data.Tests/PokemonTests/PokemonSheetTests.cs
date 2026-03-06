@@ -39,6 +39,7 @@ namespace PokeBattleSim.Data.Tests
             Assert.Equal("Buddy", sheet.Nickname);
             Assert.Equal(dex.BaseInfo.Length, sheet.Length);
             Assert.Equal(dex.GameInfo.Attributes, sheet.BaseAttributes);
+            Assert.Equal(Grades.E, sheet.Friendship);
         }
 
         [Fact]
@@ -72,9 +73,11 @@ namespace PokeBattleSim.Data.Tests
             sheet.IsFainted = true;
             sheet.ExpInvested = 100;
             sheet.HealthPoints = new Tuple<int, uint>(0, 10);
+            sheet.Friendship = Grades.A;
         
             Assert.True(sheet.IsFainted);
             Assert.Equal(100, sheet.ExpInvested);
+            Assert.Equal(Grades.A, sheet.Friendship);
         }
 
         [Fact]

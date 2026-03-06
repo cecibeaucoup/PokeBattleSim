@@ -22,6 +22,8 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         public int ExpInvested { get; set; } = 0;
 
+        public Grades Friendship { get; set; } = Grades.E;
+
         #endregion
 
         #region Game Stats
