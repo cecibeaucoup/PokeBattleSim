@@ -27,7 +27,7 @@ namespace PokeBattleSim.Data.Tests
         {
             var moveStats = new MoveStats();
             var tags = new List<Tags> { Tags.FightingSTAB };
-            var move = new Move(1u, "Aqua-Electric", PokemonTypes.Water, "Hybrid move", moveStats, false, PokemonTypes.Electric, tags);
+            var move = new Move(1u, "Aqua-Electric", PokemonTypes.Water, "Hybrid move", moveStats, false, Grades.C, PokemonTypes.Electric, tags);
 
             Assert.Equal(PokemonTypes.Water, move.Type);
             Assert.Equal(PokemonTypes.Electric, move.SecondaryType);
@@ -74,7 +74,7 @@ namespace PokeBattleSim.Data.Tests
         public void Move_ToDexDualType()
         {
             var moveStats = new MoveStats();
-            var move = new Move(1u, "Hybrid", PokemonTypes.Electric, "Dual type", moveStats, true, PokemonTypes.Water);
+            var move = new Move(1u, "Hybrid", PokemonTypes.Electric, "Dual type", moveStats, true, Grades.C, PokemonTypes.Water);
             var result = move.ToDex();
 
             Assert.Contains("Electric/Water", result);
