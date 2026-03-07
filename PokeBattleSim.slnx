@@ -5,5 +5,6 @@
     <Project Path="src/PokeBattleSim.Data.Tests/PokeBattleSim.Data.Tests.csproj" />
     <Project Path="src/PokeBattleSim.Data/PokeBattleSim.Data.csproj" />
     <Project Path="src/PokeBattleSim.Infra/PokeBattleSim.Infra.csproj" />
+    <Project Path="src/PokeBattleSim.Infra.Tests/PokeBattleSim.Infra.Tests.csproj" />
   </Folder>
 </Solution>
