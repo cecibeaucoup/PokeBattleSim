@@ -18,7 +18,8 @@ namespace PokeBattleSim.Infra.Tests
             var gameInfo = new PokemonDexGameInfo(
                 PokeAttribute.GetDefaultStats(),
                 PokeSkill.GetDefaultStats(),
-                [MobilityTypes.Ground]);
+                new[] { MobilityTypes.Ground },
+                new[] { Senses.Vision });
             return new PokemonDex(baseInfo, gameInfo);
         }
 

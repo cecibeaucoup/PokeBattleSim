@@ -27,7 +27,8 @@ namespace PokeBattleSim.Data.Tests
                 new(1, Skills.Evasion)
             };
             var mobility = new MobilityTypes[] { MobilityTypes.Ground };
-            return new PokemonDex("P", 1u, 1u, 1u, Morphologies.Animal, PokemonTypes.Normal, PokemonTypes.None, EggGroups.NoGroup, attrs, skills, mobility);
+            var senses = new Senses[] { Senses.Vision };
+            return new PokemonDex("P", 1u, 1u, 1u, Morphologies.Animal, PokemonTypes.Normal, PokemonTypes.None, EggGroups.NoGroup, attrs, skills, mobility, senses);
         }
 
         [Fact]
@@ -207,7 +208,7 @@ namespace PokeBattleSim.Data.Tests
                 new(1, Skills.Evasion)
             };
             var dex = new PokemonDex("Charizard", 6u, 17u, 90u, Morphologies.Animal, 
-                PokemonTypes.Fire, PokemonTypes.Flying, EggGroups.Monster, attrs, skills, new[] { MobilityTypes.Ground });
+                PokemonTypes.Fire, PokemonTypes.Flying, EggGroups.Monster, attrs, skills, new[] { MobilityTypes.Ground }, new[] { Senses.Vision });
             var sheet = new PokemonSheet("Blaze", dex);
 
             var result = sheet.ToSheet();

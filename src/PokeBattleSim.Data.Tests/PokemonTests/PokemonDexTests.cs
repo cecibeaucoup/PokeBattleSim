@@ -14,22 +14,7 @@ namespace PokeBattleSim.Data.Tests
     {
         private PokemonDex CreateTestDex()
         {
-            var attrs = new List<PokeAttribute>()
-            {
-                new(1, Attributes.Power),
-                new(1, Attributes.Toughness),
-                new(1, Attributes.Speed),
-                new(1, Attributes.Stamina)
-            };
-            var skills = new List<PokeSkill>()
-            {
-                new(1, Skills.Aim),
-                new(1, Skills.Brawl),
-                new(1, Skills.Efficiency),
-                new(1, Skills.Evasion)
-            };
-            var mobility = new MobilityTypes[] { MobilityTypes.Ground };
-            return new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field, attrs, skills, mobility);
+            return new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field, _attrs, _skills, _mobility, _senses);
         }
 
         private readonly List<PokeAttribute> _attrs = new()
@@ -49,12 +34,13 @@ namespace PokeBattleSim.Data.Tests
         };
 
         private readonly MobilityTypes[] _mobility = { MobilityTypes.Ground };
+        private readonly Senses[] _senses = { Senses.Vision };
 
         [Fact]
         public void PokemonDex_ConstructorWithBaseAndGameInfo()
         {
             var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field);
-            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility);
+            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, _senses);
 
             var dex = new PokemonDex(baseInfo, gameInfo);
 
@@ -65,7 +51,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDex_ConstructorWithParameters()
         {
-            var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field, _attrs, _skills, _mobility);
+            var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field, _attrs, _skills, _mobility, _senses);
 
             Assert.Equal("Pikachu", dex.BaseInfo.Name);
             Assert.Equal(25u, dex.BaseInfo.DexNumber);
@@ -83,7 +69,7 @@ namespace PokeBattleSim.Data.Tests
             var moves = new[] { "Thunderbolt", "Quick Attack" };
 
             var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, 
-                                        EggGroups.Field, _attrs, _skills, _mobility, _possibleAbilities: abilities, _possibleMoves: moves);
+                                        EggGroups.Field, _attrs, _skills, _mobility, _senses,_possibleAbilities: abilities, _possibleMoves: moves);
 
             Assert.Equal(2, dex.GameInfo.PossibleAbilities.Count());
             Assert.Equal(2, dex.GameInfo.PossibleMoves.Count());
@@ -93,7 +79,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonDex_ToDex_ContainsExpectedInfo()
         {
             var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, 
-                                        EggGroups.Field, _attrs, _skills, _mobility);
+                                        EggGroups.Field, _attrs, _skills, _mobility, _senses);
             var result = dex.ToDex();
 
             Assert.Contains("#25", result);
@@ -106,7 +92,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonDex_DualTypeHandledCorrectly()
         {
             var dex = new PokemonDex("Charizard", 6u, 17u, 90u, Morphologies.Animal, PokemonTypes.Fire, PokemonTypes.Flying, 
-                                        EggGroups.Monster, _attrs, _skills, _mobility);
+                                        EggGroups.Monster, _attrs, _skills, _mobility, _senses);
 
             Assert.Equal(PokemonTypes.Fire, dex.BaseInfo.PrimaryType);
             Assert.Equal(PokemonTypes.Flying, dex.BaseInfo.SecondaryType);
@@ -160,7 +146,8 @@ namespace PokeBattleSim.Data.Tests
             var gameInfo = new PokemonDexGameInfo(
                 new[] { new PokeAttribute(1, Attributes.Power) },
                 new[] { new PokeSkill(1, Skills.Aim) },
-                new[] { MobilityTypes.Ground }
+                new[] { MobilityTypes.Ground },
+                new[] { Senses.Vision }
             );
             var dex = new PokemonDex(baseInfo, gameInfo);
 
@@ -222,7 +209,8 @@ namespace PokeBattleSim.Data.Tests
             var gameInfo = new PokemonDexGameInfo(
                 new[] { new PokeAttribute(1, Attributes.Power) },
                 new[] { new PokeSkill(1, Skills.Aim) },
-                new[] { MobilityTypes.Ground }
+                new[] { MobilityTypes.Ground },
+                new[] { Senses.Vision }
             );
             var dex = new PokemonDex(baseInfo, gameInfo);
 
@@ -268,10 +256,10 @@ namespace PokeBattleSim.Data.Tests
                 new(1, Skills.Evasion)
             };
             var abilities = new[] { "Lightning Rod" };
-            
+            var senses = new[] { Senses.Vision };
             var dex = new PokemonDex("Pikachu", 25u, 4u, 6u, Morphologies.Animal, 
                 PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field, attrs, skills, 
-                new[] { MobilityTypes.Ground }, _possibleAbilities: abilities);
+                new[] { MobilityTypes.Ground }, senses, _possibleAbilities: abilities);
 
             var newAbility = new Ability(2u, "Static", "Paralyze effect");
             dex.AddAbility(newAbility);

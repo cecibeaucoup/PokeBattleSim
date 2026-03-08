@@ -24,14 +24,17 @@ namespace PokeBattleSim.Data.Tests
 
         private readonly MobilityTypes[] _mobility = { MobilityTypes.Ground };
 
+        private readonly Senses[] _senses = { Senses.Vision };
+
         [Fact]
         public void PokemonDexGameInfo_PropertiesInitialized()
         {
-            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility);
+            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, _senses);
 
             Assert.Equal(_attrs, gameInfo.Attributes);
             Assert.Equal(_skills, gameInfo.Skills);
             Assert.Equal(_mobility, gameInfo.Mobility);
+            Assert.Equal(_senses, gameInfo.Senses);
             Assert.Empty(gameInfo.PossibleAbilities);
             Assert.Empty(gameInfo.PossibleMoves);
         }
@@ -42,7 +45,7 @@ namespace PokeBattleSim.Data.Tests
             var abilities = new[] { "Static" };
             var moves = new[] { "Thunderbolt" };
 
-            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, abilities, moves);
+            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, _senses, abilities, moves);
 
             Assert.Single(gameInfo.PossibleAbilities);
             Assert.Single(gameInfo.PossibleMoves);
@@ -53,7 +56,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDexGameInfo_NullAbilitiesDefaultsToEmpty()
         {
-            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, null, null);
+            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, _senses, null, null);
 
             Assert.Empty(gameInfo.PossibleAbilities);
             Assert.Empty(gameInfo.PossibleMoves);
@@ -62,10 +65,11 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDexGameInfo_ToDexContainsAllSections()
         {
-            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility);
+            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, _senses);
             var result = gameInfo.ToDex();
 
             Assert.Contains("Mobility:", result);
+            Assert.Contains("Senses:", result);
             Assert.Contains("Attributes:", result);
             Assert.Contains("Skills:", result);
             Assert.Contains("Possible Abilities:", result);
@@ -78,7 +82,7 @@ namespace PokeBattleSim.Data.Tests
             var abilities = new[] { "Static", "Lightning Rod" };
             var moves = new[] { "Thunderbolt" };
 
-            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, abilities, moves);
+            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, _senses, abilities, moves);
             var result = gameInfo.ToDex();
 
             Assert.Contains("Static", result);
@@ -89,7 +93,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDexGameInfo_ToDexWithNone_WhenNoAbilitiesOrMoves()
         {
-            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility);
+            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, _senses);
             var result = gameInfo.ToDex();
 
             Assert.Contains("None", result); // Should appear for abilities and moves if empty
@@ -98,7 +102,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void PokemonDexGameInfo_PropertiesCanBeModified()
         {
-            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility);
+            var gameInfo = new PokemonDexGameInfo(_attrs, _skills, _mobility, _senses);
             var newAttrs = new List<PokeAttribute> { new(5, Attributes.Power) };
 
             gameInfo.Attributes = newAttrs;

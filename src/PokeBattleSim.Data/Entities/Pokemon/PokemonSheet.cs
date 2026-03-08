@@ -18,6 +18,8 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         public IEnumerable<MobilityTypes> Mobility { get; set; } = _dexEntry.GameInfo.Mobility;
 
+        public IEnumerable<Senses> Senses { get; set; } = _dexEntry.GameInfo.Senses;
+
         public bool IsFainted { get; set; } = false;
 
         public int ExpInvested { get; set; } = 0;
