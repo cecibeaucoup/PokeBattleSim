@@ -2,9 +2,9 @@
   <Folder Name="/src/">
     <Project Path="src/PokeBattleSim.Battler/PokeBattleSim.Battler.csproj" />
     <Project Path="src/PokeBattleSim.ConsoleUI/PokeBattleSim.ConsoleUI.csproj" />
-    <Project Path="src/PokeBattleSim.Data.Tests/PokeBattleSim.Data.Tests.csproj" />
+    <Project Path="src/Tests/PokeBattleSim.Data.Tests/PokeBattleSim.Data.Tests.csproj" />
     <Project Path="src/PokeBattleSim.Data/PokeBattleSim.Data.csproj" />
     <Project Path="src/PokeBattleSim.Infra/PokeBattleSim.Infra.csproj" />
-    <Project Path="src/PokeBattleSim.Infra.Tests/PokeBattleSim.Infra.Tests.csproj" />
+    <Project Path="src/Tests/PokeBattleSim.Infra.Tests/PokeBattleSim.Infra.Tests.csproj" />
   </Folder>
 </Solution>

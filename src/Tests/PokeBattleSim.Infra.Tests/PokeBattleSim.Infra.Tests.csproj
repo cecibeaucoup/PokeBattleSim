@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PokeBattleSim.Data\PokeBattleSim.Data.csproj" />
-    <ProjectReference Include="..\PokeBattleSim.Infra\PokeBattleSim.Infra.csproj" />
+    <ProjectReference Include="..\..\PokeBattleSim.Data\PokeBattleSim.Data.csproj" />
+    <ProjectReference Include="..\..\PokeBattleSim.Infra\PokeBattleSim.Infra.csproj" />
   </ItemGroup>
 
 </Project>
