@@ -7,5 +7,6 @@ namespace PokeBattleSim.Data.Enums
         Abilities = 2,
         Moves = 3,
         Types = 4,
+        Mixed = 5
     }
 }

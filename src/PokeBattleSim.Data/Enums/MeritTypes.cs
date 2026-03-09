@@ -23,7 +23,12 @@ namespace PokeBattleSim.Data.Enums
         SupportMastery = 12,
         SpeciesTraits = 13,
         Personality = 14,
-        StrongFoundation = 15
+        StrongFoundation = 15,
+
+        // Custom Merits
+        DeltaEvolution = 16,
+        ShadowPokemon = 17,
+        Eviolite = 18,
     }
 
 }

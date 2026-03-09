@@ -52,6 +52,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         #endregion
 
+        #region Methods
         public string ToSheet()
         {
             string strBuilder = $"Nickname: {Nickname}\n";
@@ -128,5 +129,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
             var personalities = Enum.GetValues<Personalities>();
             return personalities[Random.Shared.Next(personalities.Length)];
         }
+
+        #endregion
     }
 }

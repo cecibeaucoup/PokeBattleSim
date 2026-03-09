@@ -7,6 +7,8 @@ namespace PokeBattleSim.Data.Enums
         Swim = 2,
         Burrow = 3,
         Hover = 4,
-        Fly = 5
+        Fly = 5,
+        WallClimb = 6,
+        Teleport = 7,
     }
 }
