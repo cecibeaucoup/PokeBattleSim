@@ -1,6 +1,5 @@
 using Xunit;
 using PokeBattleSim.Data.Entities.Trainer;
-using PokeBattleSim.Data.Enums;
 using PokeBattleSim.Infra.Repositories.InMemory;
 
 namespace PokeBattleSim.Infra.Tests
