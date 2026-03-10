@@ -15,18 +15,20 @@ namespace PokeBattleSim.Data.Tests
             Assert.Equal(0, moveStats.HitAutos);
             Assert.Equal(0, moveStats.DamageDice);
             Assert.Equal(0, moveStats.DamageAutos);
+            Assert.Equal(1, moveStats.NumberOfHits);
         }
 
         [Fact]
         public void MoveStats_InitializeWithValues()
         {
-            var moveStats = new MoveStats(2, 3, 1, 5, 6);
+            var moveStats = new MoveStats(2, 3, 1, 5, 6, 2);
 
             Assert.Equal(2, moveStats.Priority);
             Assert.Equal(3, moveStats.HitDice);
             Assert.Equal(1, moveStats.HitAutos);
             Assert.Equal(5, moveStats.DamageDice);
             Assert.Equal(6, moveStats.DamageAutos);
+            Assert.Equal(2, moveStats.NumberOfHits);
         }
 
         [Fact]
