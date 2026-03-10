@@ -1,35 +1,38 @@
 using System;
 using Microsoft.Extensions.Hosting;
 
-namespace PokeBattleSim.ConsoleUI;
+namespace PokeBattleSim.ConsoleUI.Controllers;
 
-public class ConsoleController : IHostedService
+public class ConsoleController(IEnumerable<IEntityController> _controllers) : IHostedService
 {
-    int userSelection = 0;
+    int userSelection = -1;
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
         Console.WriteLine("Welcome to the Pokemon Battle Simulator!");
         Console.WriteLine("This is a console application to simulate Pokemon battles in Red Flag's quest system.");
 
-        RunController(cancellationToken);        
+        _ = RunController(cancellationToken);        
 
         return Task.CompletedTask;
     }
 
-    public Task RunController(CancellationToken cancellationToken)
+    public async Task RunController(CancellationToken cancellationToken)
     {
-       while (userSelection != 7)
+        var controllerList = _controllers.ToList();
+
+        while (userSelection != 0)
         {
-            Console.WriteLine("Please select an option below:");
+            Console.WriteLine("\nPlease select an option below:");
 
             Console.WriteLine("1. Battle - Choose trainers and put them into battle");
             Console.WriteLine("2. Trainerdex - View, add or edit sheets for trainers and their pokemon");
             Console.WriteLine("3. Pokedex - View, add or edit the basic info for pokemon");
             Console.WriteLine("4. MoveDex - View, add or edit the basic info for pokemon moves");
             Console.WriteLine("5. AbilityDex - View, add or edit the basic info for pokemon abilities");
-            Console.WriteLine("6. System - View or edit the system configurations.");
-            Console.WriteLine("7. Exit");
+            Console.WriteLine("6. TraitDex - View, add or edit the basic info for trainer traits");
+            Console.WriteLine("7. System - View or edit the system configurations.");
+            Console.WriteLine("0. Exit");
 
             try
             {
@@ -44,48 +47,46 @@ public class ConsoleController : IHostedService
             switch(userSelection)
             {
                 case 1:
-                    // Start a new battle
-                   Console.WriteLine(new NotImplementedException("Battle functionality is not yet implemented."));
+                    Console.WriteLine("Battle functionality is not yet implemented.");
                     break;
+
                 case 2:
-                    // Trainerdex
-                    Console.WriteLine(new NotImplementedException("Trainerdex functionality is not yet implemented."));
+                    await GetController("Trainer").RunController();
                     break;
 
                 case 3:
-                    // Pokedex
-                    Console.WriteLine(new NotImplementedException("Pokedex functionality is not yet implemented."));
+                    await GetController("PokeDex").RunController();
                     break;
 
                 case 4:
-                    // MoveDex
-                    Console.WriteLine(new NotImplementedException("MoveDex functionality is not yet implemented."));
+                    await GetController("MoveDex").RunController();
                     break;
 
                 case 5:
-                    // AbilityDex
-                    Console.WriteLine(new NotImplementedException("AbilityDex functionality is not yet implemented."));
+                    await GetController("AbilityDex").RunController();
                     break;
 
                 case 6:
-                    // System
-                    Console.WriteLine(new NotImplementedException("System functionality is not yet implemented."));
+                    await GetController("TraitDex").RunController();
                     break;
 
                 case 7:
-                    // Exit
+                    Console.WriteLine("System functionality is not yet implemented.");
+                    break;
+
+                case 0:
                     Console.WriteLine("Thank you for using the Pokemon Battle Simulator! Goodbye!");
                     break;
+
                 default:
                     Console.WriteLine("Invalid selection. Please try again.");
                     break;
             }
-
-            Console.Clear();
         }
-
-        return Task.CompletedTask;
     }
+
+    private IEntityController GetController(string name) =>
+        _controllers.First(c => c.EntityName == name);
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
