@@ -3,10 +3,13 @@ using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Entities.Trainer
 {
-    public class TrainerSheet(uint _trainerId, string _name, uint _age, Regions _currentRegion = Regions.None)
+    public class TrainerSheet(uint _trainerId, string _name, Genders _gender, uint _age, Regions _currentRegion = Regions.None)
     {
         public uint TrainerId { get; set; } = _trainerId;
+        
         public string Name { get; set; } = _name;
+
+        public Genders Gender { get; set; } = _gender;
 
         public uint Age { get; set; } = _age;
 

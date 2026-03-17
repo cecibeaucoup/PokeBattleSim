@@ -7,6 +7,7 @@ namespace PokeBattleSim.Data.Enums
         C = 2,
         B = 3,
         A = 4,
-        S = 5
+        S = 5,
+        Ex = 6
     }
 }

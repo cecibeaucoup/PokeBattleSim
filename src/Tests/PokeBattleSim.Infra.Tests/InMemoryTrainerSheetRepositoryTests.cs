@@ -9,8 +9,8 @@ namespace PokeBattleSim.Infra.Tests
     {
         private readonly InMemoryTrainerSheetRepository _repo = new();
 
-        private static TrainerSheet CreateTrainer(uint id = 1u, string name = "Ash", uint age = 10)
-            => new(id, name, age, Regions.Kanto);
+        private static TrainerSheet CreateTrainer(uint id = 1u, string name = "Ash", Genders gender = Genders.Masculine, uint age = 10)
+            => new(id, name, gender, age, Regions.Kanto);
 
         [Fact]
         public async Task AddAsync_And_GetByIdAsync_ReturnsEntity()
@@ -37,7 +37,7 @@ namespace PokeBattleSim.Infra.Tests
         public async Task GetByNameAsync_ReturnsMatchingEntity()
         {
             await _repo.AddAsync(CreateTrainer(1u, "Ash"));
-            await _repo.AddAsync(CreateTrainer(2u, "Misty"));
+            await _repo.AddAsync(CreateTrainer(2u, "Misty", Genders.Feminine));
 
             var result = await _repo.GetByNameAsync("Misty");
 
@@ -57,8 +57,8 @@ namespace PokeBattleSim.Infra.Tests
         public async Task GetAllAsync_ReturnsAllEntities()
         {
             await _repo.AddAsync(CreateTrainer(1u, "Ash"));
-            await _repo.AddAsync(CreateTrainer(2u, "Misty"));
-            await _repo.AddAsync(CreateTrainer(3u, "Brock"));
+            await _repo.AddAsync(CreateTrainer(2u, "Misty", Genders.Feminine));
+            await _repo.AddAsync(CreateTrainer(3u, "Brock", Genders.Masculine));
 
             var result = await _repo.GetAllAsync();
 
@@ -76,9 +76,9 @@ namespace PokeBattleSim.Infra.Tests
         [Fact]
         public async Task UpdateAsync_ReplacesEntity()
         {
-            await _repo.AddAsync(CreateTrainer(1u, "Ash", 10));
+            await _repo.AddAsync(CreateTrainer(1u, "Ash", Genders.Masculine, 10));
 
-            var updated = new TrainerSheet(1u, "Ash", 11, Regions.Johto);
+            var updated = new TrainerSheet(1u, "Ash", Genders.Masculine, 11, Regions.Johto);
             await _repo.UpdateAsync(updated);
 
             var result = await _repo.GetByIdAsync(1u);
@@ -90,7 +90,7 @@ namespace PokeBattleSim.Infra.Tests
         [Fact]
         public async Task DeleteAsync_RemovesEntity()
         {
-            await _repo.AddAsync(CreateTrainer(1u));
+            await _repo.AddAsync(CreateTrainer(1u, "Ash", Genders.Masculine, 10));
             await _repo.DeleteAsync(1u);
 
             var result = await _repo.GetByIdAsync(1u);

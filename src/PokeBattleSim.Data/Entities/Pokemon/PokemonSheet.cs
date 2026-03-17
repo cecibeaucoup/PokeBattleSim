@@ -4,11 +4,13 @@ using PokeBattleSim.Data.Enums;
 
 namespace PokeBattleSim.Data.Entities.Pokemon
 {
-    public class PokemonSheet(string _nickname, PokemonDex _dexEntry)
+    public class PokemonSheet(string _nickname, Genders _gender, PokemonDex _dexEntry)
     {
         #region Base Info
 
         public string Nickname { get; private set; } = _nickname;
+
+        public Genders Gender { get; set; } = _gender;
 
         public PokemonDexBaseInfo DexInfo { get; private set; } = _dexEntry.BaseInfo;
 

@@ -85,7 +85,7 @@ namespace PokeBattleSim.Data.Enums
 
         #endregion
 
-        #region Veil Tags
+        #region Veil & Cloak Tags
 
         WaterVeil,
         SandVeil,
@@ -94,6 +94,8 @@ namespace PokeBattleSim.Data.Enums
         ToxicVeil,
         FlareVeil,
         ShockVeil,
+        ShadowCloak,
+        GaleCloak,
 
         #endregion
 
@@ -173,7 +175,26 @@ namespace PokeBattleSim.Data.Enums
 
         #endregion
 
-        #region 
+        #region Combat Stats Tags
+
+        PriorityUp,
+        PriorityDown,
+        EvasionUp,
+        EvasionDown,
+        DefenseUp,
+        HitUp,
+        HitDown,
+        DamageUp,
+        DamageDown,
+
         #endregion
+
+        #region 
+
+        
+
+        #endregion
+
+
     }
 }

@@ -35,9 +35,10 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_InitializesFromDex()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.Genderless, dex);
         
             Assert.Equal("Buddy", sheet.Nickname);
+            Assert.Equal(Genders.Genderless, sheet.Gender);
             Assert.Equal(dex.BaseInfo.Length, sheet.Length);
             Assert.Equal(dex.GameInfo.Attributes, sheet.BaseAttributes);
             Assert.Equal(Grades.E, sheet.Friendship);
@@ -48,7 +49,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_InitialHealthAndEnergy()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
         
             Assert.Equal(1, sheet.HealthPoints.Item1);
             Assert.Equal(1u, sheet.HealthPoints.Item2);
@@ -60,7 +61,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_InitialState()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
         
             Assert.False(sheet.IsFainted);
             Assert.Equal(0, sheet.ExpInvested);
@@ -70,7 +71,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_PropertiesCanBeModified()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
         
             sheet.IsFainted = true;
             sheet.ExpInvested = 100;
@@ -86,7 +87,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_AbilitiesAndMoves()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
         
             Assert.Empty(sheet.Abilities);
             Assert.Empty(sheet.Moves);
@@ -97,7 +98,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_FormatsCorrectly()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
             var result = sheet.ToSheet();
         
             Assert.Contains("Buddy", result);
@@ -109,7 +110,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_CalculateTotalAttributesBasic()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
         
             // Access through ToSheet which calls CalculateTotalAttributes
             var result = sheet.ToSheet();
@@ -121,7 +122,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_CalculateTotalSkillsBasic()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
         
             // Access through ToSheet which calls CalculateTotalSkills
             var result = sheet.ToSheet();
@@ -133,7 +134,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_WithMerits()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
         
             var meritAttrs = new List<PokeAttribute>
             {
@@ -149,7 +150,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_DexInfoAccessible()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
         
             Assert.Equal(dex.BaseInfo.Name, sheet.DexInfo.Name);
             Assert.Equal(dex.BaseInfo.DexNumber, sheet.DexInfo.DexNumber);
@@ -159,7 +160,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_ContainsNickname()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Sparky", dex);
+            var sheet = new PokemonSheet("Sparky", Genders.NonBinary, dex);
 
             var result = sheet.ToSheet();
 
@@ -170,7 +171,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_ContainsMorphology()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
 
             var result = sheet.ToSheet();
 
@@ -182,7 +183,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_ContainsType()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
 
             var result = sheet.ToSheet();
 
@@ -209,7 +210,7 @@ namespace PokeBattleSim.Data.Tests
             };
             var dex = new PokemonDex("Charizard", 6u, 17u, 90u, Morphologies.Animal, 
                 PokemonTypes.Fire, PokemonTypes.Flying, EggGroups.Monster, attrs, skills, new[] { MobilityTypes.Ground }, new[] { Senses.Vision });
-            var sheet = new PokemonSheet("Blaze", dex);
+            var sheet = new PokemonSheet("Blaze", Genders.NonBinary, dex);
 
             var result = sheet.ToSheet();
 
@@ -220,7 +221,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_ContainsHealthAndEnergy()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary,dex);
 
             var result = sheet.ToSheet();
 
@@ -232,7 +233,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_ContainsAttributes()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
 
             var result = sheet.ToSheet();
 
@@ -245,7 +246,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_ContainsSkills()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
 
             var result = sheet.ToSheet();
 
@@ -258,7 +259,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_ContainsAbilities()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
 
             var result = sheet.ToSheet();
 
@@ -269,7 +270,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_ContainsMoves()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary,dex);
 
             var result = sheet.ToSheet();
 
@@ -280,7 +281,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_ContainsMerits()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary,dex);
 
             var result = sheet.ToSheet();
 
@@ -291,7 +292,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_WithAbilities()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary,dex);
             sheet.Abilities = new[]
             {
                 new Ability(1u, "Static", "Paralyze effect"),
@@ -308,7 +309,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_WithMoves()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary,dex);
             sheet.Moves = new[] { "Thunderbolt", "Quick Attack", "Tail Whip" };
 
             var result = sheet.ToSheet();
@@ -322,7 +323,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_EmptyAbilitiesShowsNone()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary,dex);
             
             var result = sheet.ToSheet();
 
@@ -337,7 +338,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_WithModifiedPhysicalStats()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary,dex);
             sheet.Length = 5;
             sheet.Weight = 8;
 
@@ -351,7 +352,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_WithFaintedStatus()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
             sheet.IsFainted = true;
 
             var result = sheet.ToSheet();
@@ -365,7 +366,7 @@ namespace PokeBattleSim.Data.Tests
         public void PokemonSheet_FormatsMultilineCorrectly()
         {
             var dex = CreateTestDex();
-            var sheet = new PokemonSheet("Buddy", dex);
+            var sheet = new PokemonSheet("Buddy", Genders.NonBinary, dex);
 
             var result = sheet.ToSheet();
 

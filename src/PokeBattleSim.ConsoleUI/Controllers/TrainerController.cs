@@ -105,6 +105,13 @@ public class TrainerController(ITrainerSheetRepository _repository) : IEntityCon
         Console.Write("Name: ");
         var name = Console.ReadLine() ?? string.Empty;
 
+        Console.Write("Gender: ");
+         if (!uint.TryParse(Console.ReadLine(), out var gender))
+        {
+            Console.WriteLine("Invalid ID.");
+            return;
+        }
+
         Console.Write("Age: ");
         if (!uint.TryParse(Console.ReadLine(), out var age))
         {
@@ -117,7 +124,7 @@ public class TrainerController(ITrainerSheetRepository _repository) : IEntityCon
         if (!Enum.TryParse<Regions>(Console.ReadLine(), true, out var region))
             region = Regions.None;
 
-        var trainer = new TrainerSheet(id, name, age, region);
+        var trainer = new TrainerSheet(id, name, (Genders)gender, age, region);
         await _repository.AddAsync(trainer);
         Console.WriteLine($"Trainer '{name}' added successfully.");
     }
