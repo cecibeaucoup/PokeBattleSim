@@ -1,3 +1,4 @@
+using System.Globalization;
 using PokeBattleSim.Data.Entities.Pokemon;
 using PokeBattleSim.Data.Entities.Pokemon.Dex;
 using PokeBattleSim.Data.Entities.Pokemon.Stats;
@@ -108,16 +109,18 @@ public class PokeDexController(IPokemonDexRepository _repository) : IEntityContr
         var name = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Length (m): ");
-        if (!uint.TryParse(Console.ReadLine(), out var length))
+        if (!double.TryParse(Console.ReadLine(), NumberStyles.Float, CultureInfo.InvariantCulture, out var length)
+            || !double.IsFinite(length) || length <= 0)
         {
-            Console.WriteLine("Invalid length.");
+            Console.WriteLine("Invalid length (must be a positive number).");
             return;
         }
 
         Console.Write("Weight (kg): ");
-        if (!uint.TryParse(Console.ReadLine(), out var weight))
+        if (!double.TryParse(Console.ReadLine(), NumberStyles.Float, CultureInfo.InvariantCulture, out var weight)
+            || !double.IsFinite(weight) || weight <= 0)
         {
-            Console.WriteLine("Invalid weight.");
+            Console.WriteLine("Invalid weight (must be a positive number).");
             return;
         }
 

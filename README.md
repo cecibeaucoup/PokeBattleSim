@@ -18,6 +18,12 @@ and it seemed a fitting enough project to do so.
 - **ConsoleUI** composes the services and provides catalog, authoring, team
   setup, trainer-vs-trainer, and trainer/team-vs-wild workflows.
 
+- **Tests** (`src/Tests`) contains every test project, one per source project
+  (`PokeBattleSim.Data.Tests`, `PokeBattleSim.Battler.Tests`,
+  `PokeBattleSim.Infra.Tests`). All tests, and any new test project, must live
+  under `src/Tests`; never add tests or test projects next to the source
+  projects in `src/`.
+
 - **baseData** contains simple text files from the two quests mentioned above,
 used for reference.
 - **docs** contains the plans made with AI for the implementation.

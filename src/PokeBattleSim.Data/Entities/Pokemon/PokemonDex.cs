@@ -15,7 +15,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
             GameInfo = _gameInfo;
         }
 
-        public PokemonDex(string _name, uint _dexNumber, uint _length, uint _weight, Morphologies _morphology, PokemonTypes _priType, PokemonTypes _secType,
+        public PokemonDex(string _name, uint _dexNumber, double _length, double _weight, Morphologies _morphology, PokemonTypes _priType, PokemonTypes _secType,
                             EggGroups _eggGroup1, IEnumerable<PokeAttribute> _attributes, IEnumerable<PokeSkill> _skills, IEnumerable<MobilityTypes> _mobility, 
                             IEnumerable<Senses> _senses, EggGroups _eggGroup2 = EggGroups.NoGroup, IEnumerable<string>? _possibleAbilities = null, 
                             IEnumerable<string>? _possibleMoves = null)

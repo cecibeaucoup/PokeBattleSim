@@ -11,7 +11,7 @@ namespace PokeBattleSim.Data.Enums
         GroundMovement,
         SwimMovement,
         BurrowMovement,
-        HoverMovement,
+        LevitateMovement,
         FlyMovement,
         WallClimbMovement,
         TeleportMovement,
@@ -55,9 +55,12 @@ namespace PokeBattleSim.Data.Enums
         RainyWeather,
         SandyWeather,
         SnowyWeather,
-        ShadowWeather,
-        StormyWeather,
         FoggyWeather,
+        SmogWeather,
+        HarshSunWeather,
+        StormyWeather,
+        WindyWeather,
+        ShadowWeather,
         #endregion
 
         #region Roll

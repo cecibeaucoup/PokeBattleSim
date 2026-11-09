@@ -1,6 +1,7 @@
 using PokeBattleSim.Data.Entities.Pokemon.Dex;
 using PokeBattleSim.Data.Entities.Pokemon.Stats;
 using PokeBattleSim.Data.Enums;
+using PokeBattleSim.Data.System;
 
 namespace PokeBattleSim.Data.Entities.Pokemon
 {
@@ -14,9 +15,21 @@ namespace PokeBattleSim.Data.Entities.Pokemon
 
         public PokemonDexBaseInfo DexInfo { get; private set; } = _dexEntry.BaseInfo;
 
-        public uint Length { get; set; } = _dexEntry.BaseInfo.Length;
+        public double Length
+        {
+            get => _lengthValue;
+            set => _lengthValue = Measurements.EnsurePositive(value, nameof(Length));
+        }
 
-        public uint Weight { get; set; } = _dexEntry.BaseInfo.Weight;
+        public double Weight
+        {
+            get => _weightValue;
+            set => _weightValue = Measurements.EnsurePositive(value, nameof(Weight));
+        }
+
+        private double _lengthValue = _dexEntry.BaseInfo.Length;
+
+        private double _weightValue = _dexEntry.BaseInfo.Weight;
 
         public IEnumerable<MobilityTypes> Mobility { get; set; } = _dexEntry.GameInfo.Mobility;
 

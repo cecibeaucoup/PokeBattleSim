@@ -6,7 +6,7 @@ namespace PokeBattleSim.Data.Enums
         Ground = 1,
         Swim = 2,
         Burrow = 3,
-        Hover = 4,
+        Levitate = 4,
         Fly = 5,
         WallClimb = 6,
         Teleport = 7,

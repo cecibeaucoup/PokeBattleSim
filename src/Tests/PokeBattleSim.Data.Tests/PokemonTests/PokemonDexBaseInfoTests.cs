@@ -1,4 +1,5 @@
 using Xunit;
+using System;
 using PokeBattleSim.Data.Entities.Pokemon.Dex;
 using PokeBattleSim.Data.Enums;
 
@@ -32,6 +33,30 @@ namespace PokeBattleSim.Data.Tests
             Assert.Equal("Raichu", baseInfo.Name);
             Assert.Equal(8u, baseInfo.Length);
             Assert.Equal(30u, baseInfo.Weight);
+        }
+
+        [Fact]
+        public void PokemonDexBaseInfo_AcceptsFractionalLengthAndWeight()
+        {
+            var baseInfo = new PokemonDexBaseInfo("Joltik", 595u, 0.1, 0.6, Morphologies.Animal, PokemonTypes.Bug, PokemonTypes.Electric, EggGroups.Field);
+
+            Assert.Equal(0.1, baseInfo.Length);
+            Assert.Equal(0.6, baseInfo.Weight);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1.5)]
+        [InlineData(double.NaN)]
+        [InlineData(double.PositiveInfinity)]
+        public void PokemonDexBaseInfo_RejectsNonPositiveLengthAndWeight(double value)
+        {
+            var baseInfo = new PokemonDexBaseInfo("Pikachu", 25u, 4u, 6u, Morphologies.Animal, PokemonTypes.Electric, PokemonTypes.None, EggGroups.Field);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => baseInfo.Length = value);
+            Assert.Throws<ArgumentOutOfRangeException>(() => baseInfo.Weight = value);
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+                new PokemonDexBaseInfo("X", 1u, value, 1, Morphologies.Animal, PokemonTypes.Normal, PokemonTypes.None, EggGroups.Field));
         }
 
         [Fact]

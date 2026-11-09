@@ -1,17 +1,30 @@
 using PokeBattleSim.Data.Enums;
+using PokeBattleSim.Data.System;
 
 namespace PokeBattleSim.Data.Entities.Pokemon.Dex
 {
-    public class PokemonDexBaseInfo(string _name, uint _dexNumber, uint _length, uint _weight, Morphologies _morphology, PokemonTypes _priType, 
+    public class PokemonDexBaseInfo(string _name, uint _dexNumber, double _length, double _weight, Morphologies _morphology, PokemonTypes _priType, 
                                         PokemonTypes _secType, EggGroups _eggGroup1, EggGroups _eggGroup2 = EggGroups.NoGroup)
     {
         public string Name { get; set; } = _name;
 
         public uint DexNumber { get; set; } = _dexNumber;
 
-        public uint Length { get; set; } = _length;
+        public double Length
+        {
+            get => _lengthValue;
+            set => _lengthValue = Measurements.EnsurePositive(value, nameof(Length));
+        }
 
-        public uint Weight { get; set; } = _weight;
+        public double Weight
+        {
+            get => _weightValue;
+            set => _weightValue = Measurements.EnsurePositive(value, nameof(Weight));
+        }
+
+        private double _lengthValue = Measurements.EnsurePositive(_length, nameof(_length));
+
+        private double _weightValue = Measurements.EnsurePositive(_weight, nameof(_weight));
 
         public Morphologies Morphology { get; set; } = _morphology;
 
