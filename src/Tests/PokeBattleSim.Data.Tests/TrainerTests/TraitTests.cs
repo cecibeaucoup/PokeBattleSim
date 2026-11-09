@@ -12,8 +12,8 @@ namespace PokeBattleSim.Data.Tests
         {
             var tags = new []
             {
-                Tags.FightingSTAB,
-                Tags.DoubleDice
+                new TagBinding(MechanicTag.STAB, ResolutionTag.FightingType),
+                new TagBinding(MechanicTag.DiceModification, ResolutionTag.Double)
             };
             var t = new Trait(1u, "Brave", "Fearless", tags);
             Assert.Equal(1u, t.TraitId);
@@ -63,16 +63,17 @@ namespace PokeBattleSim.Data.Tests
         {
             var tags = new []
             {
-                Tags.FightingSTAB,
-                Tags.DoubleDice
+                new TagBinding(MechanicTag.STAB, ResolutionTag.FightingType),
+                new TagBinding(MechanicTag.DiceModification, ResolutionTag.Double)
             };
             var t = new Trait(1u, "Brave", "Fearless", tags);
             var result = t.ToDex();
 
             Assert.Contains("Brave", result);
             Assert.Contains("Fearless", result);
-            Assert.Contains("FightingSTAB", result);
-            Assert.Contains("DoubleDice", result);
+            Assert.Contains("STAB(FightingType)", result);
+            Assert.Contains("DiceModification(Double)", result);
         }
     }
 }
+

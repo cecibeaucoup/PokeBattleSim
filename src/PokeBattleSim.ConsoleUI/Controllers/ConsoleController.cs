@@ -47,7 +47,7 @@ public class ConsoleController(IEnumerable<IEntityController> _controllers) : IH
             switch(userSelection)
             {
                 case 1:
-                    Console.WriteLine("Battle functionality is not yet implemented.");
+                    await GetController("Battle").RunController();
                     break;
 
                 case 2:

@@ -1,7 +1,7 @@
 using PokeBattleSim.Data.Entities.Pokemon.Moves;
 using PokeBattleSim.Data.Enums;
 
-namespace PokeBattleSim.Data.System;
+namespace PokeBattleSim.Battler.System;
 
 public class BattlePatterns(Dictionary<AttackPatterns, MoveStats>? _offensiveActions = null, 
                             Dictionary<DefensePatterns, MoveStats>? _defensiveActions = null)

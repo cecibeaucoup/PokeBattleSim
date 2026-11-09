@@ -1,6 +1,6 @@
 using System;
 
-namespace PokeBattleSim.Data.System;
+namespace PokeBattleSim.Battler.System;
 
 public class SystemContext
 {

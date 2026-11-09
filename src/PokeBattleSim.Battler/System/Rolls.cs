@@ -1,4 +1,4 @@
-namespace PokeBattleSim.Data.System;
+namespace PokeBattleSim.Battler.System;
 
 public class Rolls(uint _dieSize = 6, uint _threshold = 4)
 {

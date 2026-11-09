@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Xunit;
-using PokeBattleSim.Data.System;
+using PokeBattleSim.Battler.System;
 using PokeBattleSim.Data.Entities.Pokemon.Moves;
 using PokeBattleSim.Data.Enums;
 

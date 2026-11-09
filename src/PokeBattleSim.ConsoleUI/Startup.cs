@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using PokeBattleSim.Battler.System;
 using PokeBattleSim.Infra.Repositories.Interfaces;
 using PokeBattleSim.Infra.Repositories.InMemory;
 using PokeBattleSim.ConsoleUI.Controllers;
@@ -9,6 +10,7 @@ public static class Startup
 {
     public static void ConfigureServices(IServiceCollection services)
     {
+        services.AddSingleton<BattleSimulationService>();
         services.AddSingleton<IAbilityRepository, InMemoryAbilityRepository>();
         services.AddSingleton<IMoveRepository, InMemoryMoveRepository>();
         services.AddSingleton<IPokemonDexRepository, InMemoryPokemonDexRepository>();
@@ -16,6 +18,7 @@ public static class Startup
         services.AddSingleton<ITraitRepository, InMemoryTraitRepository>();
 
         services.AddSingleton<IEntityController, TrainerController>();
+        services.AddSingleton<IEntityController, BattleController>();
         services.AddSingleton<IEntityController, PokeDexController>();
         services.AddSingleton<IEntityController, MoveDexController>();
         services.AddSingleton<IEntityController, AbilityDexController>();

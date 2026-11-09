@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PokeBattleSim.Data\PokeBattleSim.Data.csproj" />
-    <ProjectReference Include="..\PokeBattleSim.Infra\PokeBattleSim.Infra.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

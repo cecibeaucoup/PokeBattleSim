@@ -2,8 +2,14 @@ namespace PokeBattleSim.Data.Enums;
 
 public enum AttackPatterns
 {
+    // Basic Patterns
     Aggresive,
     Guarded,
     Judicious,
-    Rapid
+    Precise,
+    Rapid,
+    // Intermediate Patterns
+    Supress,
+    Bombard,
+    Ambush,
 }

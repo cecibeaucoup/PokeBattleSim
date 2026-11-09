@@ -3,7 +3,7 @@ using PokeBattleSim.Data.Enums;
 namespace PokeBattleSim.Data.Entities.Pokemon.Moves
 {
 
-    public class Move(uint _id, string _name, PokemonTypes _type, string _description, MoveStats _moveStats, bool _isClashable, Grades _moveGrade = Grades.E, PokemonTypes _secType = PokemonTypes.None, IEnumerable<Tags>? _tags = null)
+    public class Move(uint _id, string _name, PokemonTypes _type, string _description, MoveStats _moveStats, bool _isClashable, Grades _moveGrade = Grades.E, PokemonTypes _secType = PokemonTypes.None, IEnumerable<TagBinding>? _tags = null)
     {
         #region MoveDex
         public uint MoveId { get; set; } = _id;
@@ -23,7 +23,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon.Moves
         #region MoveFlags
         public bool IsClashable { get; set; } = _isClashable;
 
-        public IEnumerable<Tags> Tags { get; set; } = _tags ?? [];
+        public IEnumerable<TagBinding> Tags { get; set; } = _tags ?? [];
         #endregion
 
         public MoveStats MoveStats { get; set; } = _moveStats;

@@ -43,7 +43,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void Ability_WithTags()
         {
-            var tags = new List<Tags> { Tags.ElectricSTAB };
+            var tags = new List<TagBinding> { new TagBinding(MechanicTag.STAB, ResolutionTag.ElectricType) };
             var ability = new Ability(1u, "Static", "Description") { Tags = tags };
 
             Assert.Single(ability.Tags);
@@ -63,7 +63,7 @@ namespace PokeBattleSim.Data.Tests
         [Fact]
         public void Ability_ToDexWithTags()
         {
-            var tags = new List<Tags> { Tags.ElectricSTAB, Tags.ShockVeil };
+            var tags = new List<TagBinding> { new TagBinding(MechanicTag.STAB, ResolutionTag.ElectricType), new TagBinding(MechanicTag.GrantImmunity, ResolutionTag.ShockVeil) };
             var ability = new Ability(1u, "Static", "Description") { Tags = tags };
             var result = ability.ToDex();
 
@@ -71,3 +71,4 @@ namespace PokeBattleSim.Data.Tests
         }
     }
 }
+
