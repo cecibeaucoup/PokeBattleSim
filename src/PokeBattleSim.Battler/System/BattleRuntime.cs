@@ -51,6 +51,15 @@ public sealed class CombatantState(
     public int RoundDamageModifier { get; private set; }
 
     public void ChangeWounds(int amount) => Wounds = Math.Clamp(Wounds + amount, 0, MaxWounds);
+
+    public static CombatantState FromSheet(
+        string id,
+        PokeBattleSim.Data.Entities.Pokemon.PokemonSheet sheet,
+        PokeBattleSim.Battler.System.Stats.ICombatStatCalculator calculator)
+    {
+        var stats = calculator.Calculate(PokeBattleSim.Battler.System.Stats.CombatStatInputs.FromSheet(sheet));
+        return new CombatantState(id, sheet.Nickname, stats.Wounds, stats.MaxEnergy, stats.Speed, stats.Dodge, stats.Defense);
+    }
     public void ChangeEnergy(int amount) => Energy = Math.Clamp(Energy + amount, 0, MaxEnergy);
     public void ChangeRoundPriority(int amount) => RoundPriorityModifier += amount;
     public void ChangeRoundDamage(int amount) => RoundDamageModifier += amount;

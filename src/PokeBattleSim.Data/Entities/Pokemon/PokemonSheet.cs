@@ -96,7 +96,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
             return strBuilder;
         }
 
-        private List<PokeAttribute> CalculateTotalAttributes()
+        public List<PokeAttribute> CalculateTotalAttributes()
         {
             List<PokeAttribute> totalAttributes = [];
 
@@ -117,7 +117,7 @@ namespace PokeBattleSim.Data.Entities.Pokemon
             return totalAttributes;
         }
 
-        private List<PokeSkill> CalculateTotalSkills()
+        public List<PokeSkill> CalculateTotalSkills()
         {
             List<PokeSkill> totalSkills = [];
 
@@ -148,3 +148,4 @@ namespace PokeBattleSim.Data.Entities.Pokemon
         #endregion
     }
 }
+
