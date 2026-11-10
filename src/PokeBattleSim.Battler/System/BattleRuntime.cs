@@ -1,7 +1,17 @@
 using PokeBattleSim.Data.Entities.Pokemon.Moves;
 using PokeBattleSim.Data.Enums;
+using PokeBattleSim.Data.Entities;
 
 namespace PokeBattleSim.Battler.System;
+
+public enum EnvironmentCheckpoint
+{
+    RoundStart,
+    SpeedPriority,
+    HitRoll,
+    DamageRoll,
+    RoundEnd
+}
 
 public enum BattlePhase
 {
@@ -58,10 +68,12 @@ public sealed record BattleAction(
     AttackPatterns AttackPattern = AttackPatterns.Aggresive,
     DefensePatterns? TargetDefense = null);
 
-public sealed class BattleState(IEnumerable<CombatantState> _combatants)
+public sealed class BattleState(IEnumerable<CombatantState> _combatants, BattleEnvironment? _environment = null)
 {
     private readonly Dictionary<string, CombatantState> _combatants =
         _combatants.ToDictionary(c => c.Id, StringComparer.Ordinal);
+
+    public BattleEnvironment Environment { get; } = _environment ?? new BattleEnvironment();
 
     public int Round { get; internal set; }
     public BattlePhase Phase { get; internal set; } = BattlePhase.Setup;
@@ -89,6 +101,9 @@ public sealed record EffectAppliedEvent(int Round, string? ActorId, string? Targ
 public sealed record FaintedEvent(int Round, string ActorId) : BattleEvent(Round, ActorId, null);
 public sealed record RoundEndedEvent(int Round) : BattleEvent(Round, null, null);
 public sealed record UnsupportedTagEvent(int Round, string OwnerId, TagBinding Tag) : BattleEvent(Round, OwnerId, null);
+public sealed record EnvironmentChangedEvent(int Round, Weather Weather, Terrains Terrain) : BattleEvent(Round, null, null);
+public sealed record EnvironmentCheckpointEvent(int Round, EnvironmentCheckpoint Checkpoint, string? ActorId = null, string? TargetId = null)
+    : BattleEvent(Round, ActorId, TargetId);
 
 public abstract record BattleEffect(string? SourceId, string? TargetId, EffectLifetime Lifetime);
 public enum EffectLifetime
@@ -142,6 +157,8 @@ public sealed class BattleRuleContext(BattleState _state, BattleAction? _action)
 {
     public BattleState State { get; } = _state;
     public BattleAction? Action { get; } = _action;
+
+    public BattleEnvironment Environment => State.Environment;
 }
 
 public interface ITagRule

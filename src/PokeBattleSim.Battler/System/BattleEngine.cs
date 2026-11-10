@@ -13,16 +13,35 @@ public sealed class BattleEngine(
 
     public BattleState State => _state;
 
+    public void ChangeWeather(Weather weather)
+    {
+        _state.Environment.SetWeather(weather);
+        Publish(new EnvironmentChangedEvent(_state.Round, _state.Environment.Weather, _state.Environment.Terrain), null);
+    }
+
+    public void ChangeTerrain(Terrains terrain)
+    {
+        _state.Environment.SetTerrain(terrain);
+        Publish(new EnvironmentChangedEvent(_state.Round, _state.Environment.Weather, _state.Environment.Terrain), null);
+    }
+
+    private void PublishCheckpoint(EnvironmentCheckpoint checkpoint, BattleAction? action) =>
+        Publish(new EnvironmentCheckpointEvent(_state.Round, checkpoint, action?.ActorId, action?.TargetId), action);
+
     public void ExecuteRound(IEnumerable<BattleAction> actions)
     {
         TransitionTo(BattlePhase.RoundStart);
         _state.Round++;
         foreach (var combatant in _state.Combatants.Values)
             combatant.ResetRoundModifiers();
+        PublishCheckpoint(EnvironmentCheckpoint.RoundStart, null);
 
         TransitionTo(BattlePhase.ActionCollection);
-        var orderedActions = actions
-            .Where(action => IsActionLegal(action))
+        var legalActions = actions.Where(action => IsActionLegal(action)).ToList();
+        foreach (var action in legalActions)
+            PublishCheckpoint(EnvironmentCheckpoint.SpeedPriority, action);
+
+        var orderedActions = legalActions
             .OrderByDescending(action => _state.GetCombatant(action.ActorId).Speed +
                                          _state.GetCombatant(action.ActorId).RoundPriorityModifier)
             .ToList();
@@ -48,6 +67,7 @@ public sealed class BattleEngine(
         }
 
         TransitionTo(BattlePhase.EndOfRound);
+        PublishCheckpoint(EnvironmentCheckpoint.RoundEnd, null);
         Publish(new RoundEndedEvent(_state.Round), null);
         if (IsBattleComplete())
         {
@@ -72,6 +92,7 @@ public sealed class BattleEngine(
                 break;
 
             TransitionTo(BattlePhase.HitResolution);
+            PublishCheckpoint(EnvironmentCheckpoint.HitRoll, action);
             var hitRoll = _roller.Roll(move.HitDice, _configuration.RollsConfiguration.DieSize,
                 _configuration.RollsConfiguration.Threshold);
             Publish(new RollResolvedEvent(_state.Round, actor.Id, target.Id, "Hit", move.HitDice,
@@ -85,6 +106,7 @@ public sealed class BattleEngine(
                 continue;
 
             TransitionTo(BattlePhase.DamageResolution);
+            PublishCheckpoint(EnvironmentCheckpoint.DamageRoll, action);
             var damageRoll = _roller.Roll(move.DamageDice + actor.RoundDamageModifier,
                 _configuration.RollsConfiguration.DieSize, _configuration.RollsConfiguration.Threshold);
             var damage = damageRoll.Successes + move.DamageAutos;

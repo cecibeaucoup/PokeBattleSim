@@ -10,8 +10,8 @@ namespace PokeBattleSim.Data.Entities.Trainer
 
         public string Description { get; set; } = _description;
 
-        public         IEnumerable<TagBinding> Tags { get; set; } = _tags ?? [];
+        public IEnumerable<TagBinding> Tags { get; set; } = _tags ?? [];
 
-                public string ToDex() => $"{Name}: {Description}\n{(Tags.Any() ? $"Tags: {string.Join(", ", Tags)}\n" : "")}\n";
+        public string ToDex() => $"{Name}: {Description}\n{(Tags.Any() ? $"Tags: {string.Join(", ", Tags)}\n" : "")}\n";
     }
 }

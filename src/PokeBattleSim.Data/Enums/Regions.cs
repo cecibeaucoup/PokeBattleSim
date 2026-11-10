@@ -18,5 +18,12 @@ namespace PokeBattleSim.Data.Enums
         Galar = 8,
         Paldea = 9,
         Gen10 = 10,
+        Orre = 20,
+        Fiore = 21,
+        Almia = 22,
+        Ransei = 23,
+        Oblivia = 24,
+        Pasio = 25,
+        
     }
 }

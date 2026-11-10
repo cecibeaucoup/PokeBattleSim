@@ -63,6 +63,26 @@ namespace PokeBattleSim.Data.Enums
         ShadowWeather,
         #endregion
 
+        #region Terrain
+        GroundTerrain,
+        WaterTerrain,
+        WaterPlatformsTerrain,
+        DeepWaterTerrain,
+        SandTerrain,
+        SnowTerrain,
+        GrassTerrain,
+        PsychicTerrain,
+        ElectricTerrain,
+        MistyTerrain,
+        IceTerrain,
+        FlamingTerrain,
+        VolcanicTerrain,
+        UndergroundTerrain,
+        UrbanTerrain,
+        MudTerrain,
+        SwampTerrain,
+        #endregion
+
         #region Roll
         ExplodingDice,
         RerollDice,
